@@ -1,10 +1,11 @@
 //import logo from './logo.svg';
 import './App.css';
+import './scss/styles.css'
 
 function App() {
   return (
     <div>
-      <h1>shopperscorner</h1>
+      <h1>shoppersCorner</h1>
     </div>
   );
 }
