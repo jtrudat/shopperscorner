@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export const Mainlinks = ()=>{
     return(
         
         <ul>
             <li>
-                <Link to='/welcome'>Stuff to Shop</Link>
+                <Link to='/customer/auth/Signup'>Sign up</Link>
             </li>
             <li>
-                <Link to='/destination'>Order review</Link>
+                <Link to='/destination'>login</Link>
             </li>
         </ul>
          )
