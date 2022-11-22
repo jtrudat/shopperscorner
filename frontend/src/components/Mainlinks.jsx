@@ -8,7 +8,7 @@ export const Mainlinks = ()=>{
                 <Link to='/customer/auth/Signup'>Sign up</Link>
             </li>
             <li>
-                <Link to='/destination'>login</Link>
+                <Link to='/customer/auth/Login'>login</Link>
             </li>
         </ul>
          )

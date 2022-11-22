@@ -67,7 +67,7 @@ export const Signup = ()=>{
                 </p>
                 <button onClick={handleCreateAccount}>Create Account</button>
 
-                <button><a href='/destination'> Go to the login screen</a></button>
+                <button><a href='/customer/auth/Login'> Go to the login screen</a></button>
                 
                
             </form>
