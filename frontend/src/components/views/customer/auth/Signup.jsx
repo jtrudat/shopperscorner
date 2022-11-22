@@ -2,8 +2,6 @@ import { useState } from 'react'
 import axios from 'axios'
 
 
-
-
 export const Signup = ()=>{
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
@@ -34,7 +32,7 @@ export const Signup = ()=>{
             postalcode : postal,
             city : city
         }
-        axios.post('/members', newAccount)
+        axios.post('/signup', newAccount)
         setEmail('')
         setStreet('')
         setPostal('')
@@ -47,27 +45,27 @@ export const Signup = ()=>{
             <h2 id="new-account">Create New Account</h2>
             <form action="" method="">
                 <p>
-                    <label for="email">Email</label>
+                    <label>Email</label>
                     <input type="email" id="email" name="email" onChange={handleEmail}></input>
                 </p>
                 <p>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" minlength="8" placeholder="at least 8 characters" onChange={handlePassword}></input>
+                    <label>Password</label>
+                    <input type="password" id="password" name="password" minLength="8" placeholder="at least 8 characters" onChange={handlePassword}></input>
                 </p>
                 <hr></hr>
                 <p>
-                    <label for="street">Street</label>
+                    <label>Street</label>
                     <input type="text" id="street" name="street" placeholder=" name and number" onChange={handleStreet}></input>
                 </p>
                 <p>
-                    <label for="postal">Postal Code</label>
-                    <input type="text" id="postal" name="postal" minlength="5" maxlength="5" placeholder="5 digit" onChange={handlePostal}></input>
+                    <label>Postal Code</label>
+                    <input type="text" id="postal" name="postal" minLength="5" maxLength="5" placeholder="5 digit" onChange={handlePostal}></input>
                 </p>
                 <p>
-                    <label for="city">City</label>
+                    <label>City</label>
                     <input type="text" id="city" name="city" onChange={handleCity}></input>
                 </p>
-                <button onclick={handleCreateAccount}>Create Account</button>
+                <button onClick={handleCreateAccount}>Create Account</button>
 
                 <button><a href='/destination'> Go to the login screen</a></button>
                 

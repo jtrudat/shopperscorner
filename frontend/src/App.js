@@ -14,7 +14,6 @@ function App() {
       <header>
         <Mainlinks/>
       </header>
-      
       <Switch>
       <Route path="/customer/auth/Signup">
         <Signup/>
