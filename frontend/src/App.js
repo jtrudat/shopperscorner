@@ -9,29 +9,30 @@ import { Signup } from './components/views/customer/auth/Signup'
 import { Login } from './components/views/customer/auth/Login'
 import { Users } from './user/pages/Users'
 import { NewPlace } from './places/pages/NewPlace'
+import { MainNavigation } from './shared/components/navigation/MainNavigation'
 
 function App() {
   return (
     <div>
        <Router>
-      <header>
-        {/* <Mainlinks/> */}
-      </header>
-      <Switch>
-      <Route path="/customer/auth/Signup">
-        <Signup/>
-      </Route>
-      <Route path="/customer/auth/Login">
-        <Login/>
-      </Route>
-      <Route path="/" exact>
-      <Users/>
-      </Route>
-      <Route path="/places/new">
-        <NewPlace/>
-      </Route>
-      <Redirect to="/"/>
-      </Switch>
+        <MainNavigation/>
+       <main>
+        <Switch>
+           <Route path="/customer/auth/Signup">
+              <Signup/>
+           </Route>
+           <Route path="/customer/auth/Login">
+              <Login/>
+           </Route>
+           <Route path="/" exact>
+              <Users/>
+           </Route>
+           <Route path="/places/new">
+              <NewPlace/>
+           </Route>
+          <Redirect to="/"/>
+        </Switch>
+      </main>
       </Router>
     </div>
   );
