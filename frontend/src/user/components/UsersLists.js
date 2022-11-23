@@ -4,14 +4,14 @@ import { UserItem } from './UserItem'
 export const UsersList = (props) => {
     if (props.items.length === 0) {
         return (
-            <div>
+            <div className="center">
                 <h2>No users just yet</h2>
             </div>
         )
     }
     return (
-        <ul>
-            {props.item.map((user) => {
+        <ul className="users-list">
+            {props.items.map((user) => {
                 return (
                     <UserItem key={user.id}
                         id={user.id} 

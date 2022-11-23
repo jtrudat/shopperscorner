@@ -15,7 +15,7 @@ function App() {
     <div>
        <Router>
       <header>
-        <Mainlinks/>
+        {/* <Mainlinks/> */}
       </header>
       <Switch>
       <Route path="/customer/auth/Signup">
