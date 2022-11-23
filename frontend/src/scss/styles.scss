@@ -1,5 +1,7 @@
-@import "title";
-@import 'mainlinks';
-@import 'signup';
+// @import "title";
+// @import 'mainlinks';
+// @import 'signup';
 @import '../user/components/userslist';
-@import '../user/components/useritem'
+@import '../user/components/useritem';
+@import '../shared/components/uielements/avatar';
+@import '../shared/components/uielements/card'
