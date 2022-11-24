@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 
 
 const inputReducer = (state, action) =>{
@@ -18,6 +18,13 @@ export const Input = (props)=>{
 
     const [inputState, dispatch] = useReducer(inputReducer, {value: '', isValid: false})
 
+    const { id, onInput } = props;
+    const { value } = inputState
+
+    useEffect(()=>{
+        onInput(id, value)
+    }, [ id, value, onInput])
+
     const changeHandler = (evt)=>{
         dispatch({type: 'CHANGE', value: evt.target.value})
     }
@@ -28,10 +35,10 @@ export const Input = (props)=>{
    
 
     return(
-        <div className={`form-control ${!inputState.isValid && 'form-control--invalid'}`}>
+        <div className={`form-control `}>
             <label htmlFor={props.id}>{props.label}</label>
             {element}
-            {!inputState.isValid && <p>{props.errorText}</p>}
+            
         </div>
     )
 }
