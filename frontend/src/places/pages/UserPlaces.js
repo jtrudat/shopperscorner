@@ -37,7 +37,7 @@ const DUMMY_PLACES = [
             lat: 10.00001,
             lng: -10.00001
         },
-        creator: 'u3'
+        creator: 'u1'
     }
 ]
 

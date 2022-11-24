@@ -19,10 +19,10 @@ function App() {
         <MainNavigation/>
        <main>
         <Switch>
-           <Route path="/customer/auth/Signup">
+           <Route path="/user/auth/Signup">
               <Signup/>
            </Route>
-           <Route path="/customer/auth/Login">
+           <Route path="/user/auth/Login">
               <Login/>
            </Route>
            <Route path="/" exact>
