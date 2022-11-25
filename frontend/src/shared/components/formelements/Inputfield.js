@@ -6,7 +6,7 @@ const inputReducer = (state, action) =>{
         case 'CHANGE':
             return{
                 ...state,
-                value: action.val,
+                value: action.value,
                 isValid: true
             }
             default: 
@@ -26,30 +26,19 @@ export const Input = (props)=>{
     }, [ id, value, onInput])
 
     const changeHandler = (evt)=>{
-        dispatch({type: 'CHANGE', val: evt.target.value})
+        dispatch({type: 'CHANGE', value: evt.target.value})
     }
 
-    const element = props.element === 'input' ? (
-    <input 
-        id={props.id} 
-        type={props.type} 
-        placeholder={props.placeholder} 
-        onChange={changeHandler} 
-        value={inputState.value}></input>
-    ) : (
-    <textarea 
-        id={props.id} 
-        rows={props.rows || 3} 
-        onChange={changeHandler} 
-        value={inputState.value}></textarea>)
+    const topicElement = props.element === 'input' ? (<input id={props.id} type={props.type} placeholder={props.placeholder} onChange={changeHandler} value={inputState.value}></input>
+    ) : (<textarea id={props.id} rows={props.rows || 3} onChange={changeHandler} value={inputState.value}></textarea>)
 
    
 
     return(
-        <div className={`form-control ${!inputState.isValid && 'form-control--invalid'}`}>
+        <div className={`form-control `}>
             <label htmlFor={props.id}>{props.label}</label>
             {element}
-            {!inputState.isValid && <p>enter something to continue</p>}
+            
         </div>
     )
 }

@@ -25,3 +25,8 @@ This is a simple MERN stack application for adding, editing and reviewing variou
 
 # Credits:
 https://getbootstrap.com/docs/4.1/examples/
+https://formik.org/docs/guides/validation
+https://mui.com/material-ui/react-button/
+https://mui.com/material-ui/react-avatar/
+https://mui.com/material-ui/react-backdrop/
+https://mui.com/material-ui/react-card/

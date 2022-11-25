@@ -10,7 +10,7 @@ export const NewPlace = ()=>{
 
     return(
         <form className="place-form">
-            <Input id="topic" element="input" type="text" label="Topic" onInput={titleInputHandler}/>
+            <Input id="topic" element="input" type="text" label="Topic" validators={[]} onInput={titleInputHandler}/>
             <Input id="description" element="textarea" type="text" label="Description" onInput={titleInputHandler}/>
             </form>
             
