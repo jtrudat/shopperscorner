@@ -8,10 +8,10 @@ export const NavLinks = (props)=>{
                 <NavLink to="/" exact>All USERS</NavLink>
             </li>
             <li>
-                <NavLink to="/u1/places">MY TOPICS</NavLink>
+                <NavLink to="/u1/topics">MY TOPICS</NavLink>
             </li>
             <li>
-                <NavLink to="/places/new">ADD A TOPIC</NavLink>
+                <NavLink to="/topics/new">ADD A TOPIC</NavLink>
             </li>
             <li>
                 <NavLink to="/auth">AUTHENTICATE</NavLink>

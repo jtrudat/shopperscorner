@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
-import { validate } from '../../checker/validators'
+//import { validate } from '../../checker/validators'
 
 const inputReducer = (state, action) =>{
     switch (action.type){
@@ -16,7 +16,7 @@ const inputReducer = (state, action) =>{
 
 export const Input = (props)=>{
 
-    const [inputState, dispatch] = useReducer(inputReducer, {value: '', isValid: true})
+    const [inputState, dispatch] = useReducer(inputReducer, {value: props.value || '', isValid: true})
 
     const { id, onInput } = props;
     const { value } = inputState

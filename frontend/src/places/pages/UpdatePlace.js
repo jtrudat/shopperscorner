@@ -1,6 +1,7 @@
 import React from 'react'
-import { PlaceList } from '../components/PlaceList'
 import { useParams } from 'react-router-dom'
+import { Input } from '../../shared/components/formelements/Input'
+import { Button } from '../../shared/components/formelements/Button'
 
 const DUMMY_PLACES = [
     {
@@ -41,10 +42,30 @@ const DUMMY_PLACES = [
     }
 ]
 
-export const UserPlaces = ()=>{
-    const userId = useParams().userId
-    const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId)
-    return (
-        <PlaceList items={loadedPlaces}/>
+export const UpdatePlace=()=>{
+
+    const topicId = useParams().topicId
+
+    const identifiedTopic = DUMMY_PLACES.find((t)=>
+        t.id === topicId
     )
+
+    if (!identifiedTopic){
+        return (
+            <div className="center"><h2>no topic</h2></div>
+        )
+    }
+
+    const handlerUpdateTopic = ()=>{
+
+    }
+
+    return(
+        <form className="place-form" onSubmit={handlerUpdateTopic}>
+            <Input id="topic" element="input" type="text" label="Topic" onInput={()=>{}} value={identifiedTopic.topic}/>
+            <Input id="description" element="textarea"  label="Description" onInput={()=>{}} value={identifiedTopic.description}/>
+            <Button type="submit">update this info</Button>
+        </form>
+    )
+
 }
