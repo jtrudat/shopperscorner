@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Input } from '../../shared/components/formelements/Input'
 import { Button } from '../../shared/components/formelements/Button'
+import { useForm } from '../../shared/custom/hkform'
 
 const DUMMY_PLACES = [
     {
@@ -18,7 +19,7 @@ const DUMMY_PLACES = [
     },
     {
         id: 'p2',
-        topic: 'Atlantis',
+        topic: 'Atlantiss',
         description: 'underwater sea dwelling nation',
         imageUrl: 'https://i0.wp.com/knightedgemedia.com/wp-content/uploads/2021/10/e3fee38412bf3c5b0a39f2ad59d71ef6-1024x592.jpg?resize=625%2C361&ssl=1',
         address: 'atlantic ocean',
@@ -50,20 +51,45 @@ export const UpdatePlace=()=>{
         t.id === topicId
     )
 
+    const [ formState, handleInput ] = useForm({
+        topic: {
+            value: identifiedTopic.topic,
+            isValid: true
+        },
+        description:{
+            value: identifiedTopic.description,
+            isValid: true
+        }
+    })
+
     if (!identifiedTopic){
         return (
             <div className="center"><h2>no topic</h2></div>
         )
     }
 
-    const handlerUpdateTopic = ()=>{
-
+    const handlerUpdateTopic = (evt)=>{
+        evt.preventDefault()
+        console.log(formState.inputs)
     }
 
     return(
         <form className="place-form" onSubmit={handlerUpdateTopic}>
-            <Input id="topic" element="input" type="text" label="Topic" onInput={()=>{}} value={identifiedTopic.topic}/>
-            <Input id="description" element="textarea"  label="Description" onInput={()=>{}} value={identifiedTopic.description}/>
+            <Input 
+                id="topic" 
+                element="input" 
+                type="text" 
+                label="Topic"
+                validators={[]} 
+                onInput={handleInput} 
+                value={formState.inputs.topic.value}/>
+            <Input 
+                id="description" 
+                element="textarea"  
+                label="Description"
+                validators={[]} 
+                onInput={handleInput} 
+                value={formState.inputs.description.value}/>
             <Button type="submit">update this info</Button>
         </form>
     )

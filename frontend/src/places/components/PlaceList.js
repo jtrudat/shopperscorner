@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from '../../shared/components/uielements/Card'
 import { PlaceItem } from './PlaceItem'
+import { Button } from '../../shared/components/formelements/Button'
 
 export const PlaceList = (props)=>{
     
@@ -9,7 +10,7 @@ export const PlaceList = (props)=>{
             <div className="place-list center">
                 <Card>
                     <h2>No topics just yet</h2>
-                    <buttton>Add something to muse and peruse about</buttton>
+                    <Button to='/topics/new'>please add something</Button>
                 </Card>
             </div>
         )

@@ -6,7 +6,7 @@ const inputReducer = (state, action) =>{
         case 'CHANGE':
             return{
                 ...state,
-                value: action.val,
+                value: action.value,
                 isValid: true
             }
             default: 
@@ -16,17 +16,18 @@ const inputReducer = (state, action) =>{
 
 export const Input = (props)=>{
 
-    const [inputState, dispatch] = useReducer(inputReducer, {value: props.value || '', isValid: true})
+    const [inState, dispatch] = useReducer(inputReducer, {value: props.value, isValid: true })
 
+    //Destructuring used to help prevent infinite loops
     const { id, onInput } = props;
-    const { value } = inputState
+    const { value } = inState
 
     useEffect(()=>{
         onInput(id, value)
     }, [ id, value, onInput])
 
     const changeHandler = (evt)=>{
-        dispatch({type: 'CHANGE', val: evt.target.value, validators: props.validators})
+        dispatch({type: 'CHANGE', value: evt.target.value, validators: props.validators})
     }
 
     // const handlerDataEnter =()=>{
@@ -40,22 +41,22 @@ export const Input = (props)=>{
         placeholder={props.placeholder}
         // onBlur={handlerDataEnter} 
         onChange={changeHandler} 
-        value={inputState.value}></input>
+        value={inState.value}></input>
     ) : (
     <textarea 
         id={props.id} 
         rows={props.rows || 3}
         // onBlur={handlerDataEnter} 
         onChange={changeHandler} 
-        value={inputState.value}></textarea>)
+        value={inState.value}></textarea>)
 
    
 
     return(
-        <div className={`form-control ${!inputState.isValid && 'form-control--invalid'}`}>
+        <div className={`form-control ${!inState.isValid && 'form-control--invalid'}`}>
             <label htmlFor={props.id}>{props.label}</label>
             {element}
-            {!inputState.isValid && <p>enter something to continue</p>}
+            {!inState.isValid && <p>enter something to continue</p>}
         </div>
     )
 }
