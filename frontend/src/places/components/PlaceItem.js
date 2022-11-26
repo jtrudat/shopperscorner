@@ -3,6 +3,11 @@ import { Card } from '../../shared/components/uielements/Card'
 import { Button } from '../../shared/components/formelements/Button'
 
 export const PlaceItem = (props)=>{
+
+    const handleDelete=()=>{
+        console.log(`deleted`)
+    }
+
     return(
         <li className="place-item">
             <Card className="place-item__content">
@@ -17,7 +22,7 @@ export const PlaceItem = (props)=>{
             <div className="place-item__actions">
                 {/* <Button inverse>VIEW ON MAP</Button> */}
                 <Button to={`/topics/${props.id}`}>EDIT</Button>
-                <Button danger>DELETE</Button>
+                <Button danger onClick={handleDelete}>DELETE</Button>
             </div>
             </Card>
         </li>

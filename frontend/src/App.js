@@ -12,6 +12,7 @@ import { NewPlace } from './places/pages/NewPlace'
 import { UserPlaces } from './places/pages/UserPlaces'
 import { MainNavigation } from './shared/components/navigation/MainNavigation'
 import { UpdatePlace } from './places/pages/UpdatePlace'
+import { Authorize } from './user/pages/Authorize'
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
            </Route>
            <Route path="/topics/:topicId">
               <UpdatePlace/>
+           </Route>
+           <Route path="/authorize">
+            <Authorize />
            </Route>
           <Redirect to="/"/>
         </Switch>

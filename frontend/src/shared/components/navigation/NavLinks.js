@@ -14,7 +14,7 @@ export const NavLinks = (props)=>{
                 <NavLink to="/topics/new">ADD A TOPIC</NavLink>
             </li>
             <li>
-                <NavLink to="/auth">🔐LOGIN🔐</NavLink>
+                <NavLink to="/authorize">🔐ACCESS🔐</NavLink>
             </li>
         </ul>
     )

@@ -6,23 +6,7 @@ import { Input } from '../../shared/components/formelements/Input'
 import { Button } from '../../shared/components/formelements/Button'
 import { useForm } from '../../shared/custom/hkform'
 
-// const newPlaceReducer = ( state, action ) =>{
-//     switch(action.type){
-//         case 'INPUT_CHANGE':
-            
-//             return(
-//                 {
-//                     ...state,
-//                     inputs:{
-//                         ...state.inputs, 
-//                         [action.inputId]: {value: action.value}
-//                     }
-//                 });
-        
-//         default:
-//             return (state)
-//     }
-// }
+
 
 export const NewPlace = ()=>{
 
@@ -35,23 +19,6 @@ export const NewPlace = ()=>{
         }
     })
 
-    // const [ formState, dispatch] = useReducer(newPlaceReducer, {
-    //     inputs: {
-    //         topic: {
-    //             value: '',
-    //             isValid: true
-    //         },
-    //         description: {
-    //             value: '',
-    //             isValid: true
-    //         }
-    //     }
-    // })
-     
-
-
-
-    
 
     const handleSubmitTopic = (evt)=>{
         evt.preventDefault()
@@ -79,3 +46,35 @@ export const NewPlace = ()=>{
             
     )
 }
+
+
+// const newPlaceReducer = ( state, action ) =>{
+//     switch(action.type){
+//         case 'INPUT_CHANGE':
+            
+//             return(
+//                 {
+//                     ...state,
+//                     inputs:{
+//                         ...state.inputs, 
+//                         [action.inputId]: {value: action.value}
+//                     }
+//                 });
+        
+//         default:
+//             return (state)
+//     }
+// }
+
+// const [ formState, dispatch] = useReducer(newPlaceReducer, {
+    //     inputs: {
+    //         topic: {
+    //             value: '',
+    //             isValid: true
+    //         },
+    //         description: {
+    //             value: '',
+    //             isValid: true
+    //         }
+    //     }
+    // })
