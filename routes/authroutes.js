@@ -1,34 +1,34 @@
 //DEPENDENCIES
-const express = require('express')
+// const express = require('express')
 
-const router = express.Router()
+// const router = express.Router()
 
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 
-const signupController = require('../controllers/signupcontroller')
+// const signupController = require('../controllers/signupcontroller')
 
-const loginController = require('../controllers/logincontroller')
+// const loginController = require('../controllers/logincontroller')
 
-const User = require('../models/userModel')
+// const User = require('../models/userModel')
 
-//router.get('/signup', signupController)
+// //router.get('/signup', signupController)
 
 //CREATE
-router.post('/', (req, res)=>{
-    const newUser ={
-        email : req.body.email,
-        password : req.body.password,
-        street : req.body.street,
-        postalcode : req.body.postalcode,
-        city : req.body.city
-    }
-    new User(newUser)
-    .save()
-    res.status(201).json(newUser)
-    console.log(newUser)
-})
+// router.post('/', (req, res)=>{
+//     const newUser ={
+//         email : req.body.email,
+//         password : req.body.password,
+//         street : req.body.street,
+//         postalcode : req.body.postalcode,
+//         city : req.body.city
+//     }
+//     new User(newUser)
+//     .save()
+//     res.status(201).json(newUser)
+//     console.log(newUser)
+// })
 
-router.get('/login', loginController)
+// router.get('/login', loginController)
 
 //EXPORT
-module.exports = router
+// module.exports = router

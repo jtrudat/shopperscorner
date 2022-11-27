@@ -23,15 +23,14 @@ app.use(express.static(path.resolve(__dirname, './frontend/build')))
 app.use(bodyParser.json())
 app.use(cors())
 
+const topicsRoute = require('./routes/topics-route')
+const usersRoute = require('./routes/users-routes')
 
 
-// app.listen(PORT, ()=>{
-//     console.log(`listening on port ${PORT}`)
-// })
 
 //FORWARDING ALL TRAFFIC TO THE SIGNUP ROUTER CONTROLLER
-const routerSignup = require('./routes/authroutes')
-app.use('/signup', routerSignup)
+app.use('/api/places', topicsRoute)
+//app.use('/')
 
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -39,3 +38,12 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     app.listen(PORT)
     console.log(`mongodb connected on atlas and server listening on ${PORT}`)
 })
+
+
+
+
+// app.listen(PORT, ()=>{
+//     console.log(`listening on port ${PORT}`)
+// })
+// const routerSignup = require('./routes/authroutes')
+// app.use('/signup', routerSignup)

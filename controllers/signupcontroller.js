@@ -1,5 +1,5 @@
-function signup(req, res){
+// function signup(req, res){
 
-}
+// }
 
-module.exports = signup
+// module.exports = signup
