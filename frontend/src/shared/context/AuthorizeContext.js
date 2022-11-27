@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 
 export const AuthorizeContext = createContext({
-    isLogin : false, 
+    isLoggedIn : false, 
     login:()=>{}, 
     logout: ()=>{}
 })

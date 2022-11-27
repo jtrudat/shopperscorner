@@ -4,9 +4,13 @@ import { Input } from '../../shared/components/formelements/Input'
 import { Button } from '../../shared/components/formelements/Button'
 import { useForm } from '../../shared/custom/hkform'
 import { useState } from 'react'
+import { useContext } from 'react'
+import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 
 
 export const Authorize =()=>{
+
+    const auth = useContext(AuthorizeContext)
 
     const [ isLogin, setIsLogin ] = useState(true)
 
@@ -24,6 +28,7 @@ export const Authorize =()=>{
     const handleLoginSubmit = (evt)=>{
         evt.preventDefault()
         console.log(formState.inputs)
+        auth.login()
     }
 
     const handleLoginMode = ()=>{
@@ -32,7 +37,7 @@ export const Authorize =()=>{
 
     return(
         <Card className="authentication">
-            <h2>Login</h2>
+            <h2>Login Needed</h2>
         
             <form onSubmit={handleLoginSubmit}>
                 {!isLogin && 
