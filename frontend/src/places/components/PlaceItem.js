@@ -1,8 +1,12 @@
 import React from 'react'
 import { Card } from '../../shared/components/uielements/Card'
 import { Button } from '../../shared/components/formelements/Button'
+import { useContext } from 'react'
+import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 
 export const PlaceItem = (props)=>{
+
+    const authority = useContext(AuthorizeContext)
 
     const handleDelete=()=>{
         console.log(`deleted`)
@@ -21,8 +25,8 @@ export const PlaceItem = (props)=>{
             </div>
             <div className="place-item__actions">
                 {/* <Button inverse>VIEW ON MAP</Button> */}
-                <Button to={`/topics/${props.id}`}>EDIT</Button>
-                <Button danger onClick={handleDelete}>DELETE</Button>
+                {authority.isLoggedIn && (<Button to={`/topics/${props.id}`}>EDIT</Button>)}
+                {authority.isLoggedIn && (<Button danger onClick={handleDelete}>DELETE</Button>)}
             </div>
             </Card>
         </li>

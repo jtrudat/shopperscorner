@@ -23,6 +23,12 @@ export const NavLinks = (props)=>{
             <li>
                 <NavLink to="/authorize">🔐ACCESS🔐</NavLink>
             </li>)}
+            {authority.isLoggedIn && (
+                <li>
+                <button onClick={authority.logout}>EXIT</button>
+            </li>
+            )}
+            🔜
         </ul>
     )
 }
