@@ -2,7 +2,7 @@
 import './App.css';
 import './scss/styles.css'
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useCallback } from 'react'
 //import { Welcome } from './components/Welcome'
 //import { Destination } from './components/Destination'
@@ -28,6 +28,44 @@ function App() {
     setIsLoggedIn(false)
   }, [])
 
+  let routes;
+
+  if (isLoggedIn){
+    routes =(
+      <Switch>
+        <Route path="/" exact>
+              <Users/>
+        </Route>
+        <Route path="/:userId/topics" exact>
+              <UserPlaces/>
+        </Route>
+        <Route path="/topics/new" exact>
+              <NewPlace/>
+        </Route>
+        <Route path="/topics/:topicId">
+              <UpdatePlace/>
+        </Route>
+        <Redirect to="/"></Redirect>
+      </Switch>
+    )
+  }
+    else{
+      routes=(
+    <Switch>
+        <Route path="/" exact>
+               <Users/>
+        </Route>
+        <Route path="/:userId/topics" exact>
+               <UserPlaces />
+        </Route>
+        <Route path="/authorize">
+               <Authorize />
+        </Route>
+        <Redirect to="/authorize"></Redirect>
+    </Switch>
+      )
+    }
+
   return (
     
     <div>
@@ -37,36 +75,37 @@ function App() {
        <Router>
         <MainNavigation/>
        <main>
-        <Switch>
-           <Route path="/user/auth/Signup">
-              <Signup/>
-           </Route>
-           <Route path="/user/auth/Login">
-              <Login/>
-           </Route>
-           <Route path="/" exact>
-              <Users/>
-           </Route>
-           <Route path="/:userId/topics" exact>
-            <UserPlaces />
-           </Route>
-           <Route path="/topics/new" exact>
-              <NewPlace/>
-           </Route>
-           <Route path="/topics/:topicId">
-              <UpdatePlace/>
-           </Route>
-           <Route path="/authorize">
-            <Authorize />
-           </Route>
-          <Redirect to="/"/>
-        </Switch>
+          {routes}
       </main>
       </Router>
       </AuthorizeContext.Provider>
     </div>
-    
   );
 }
 
 export default App;
+
+
+
+{/* <Route path="/user/auth/Signup">
+<Signup/>
+</Route>
+<Route path="/user/auth/Login">
+<Login/>
+</Route>
+<Route path="/" exact>
+<Users/>
+</Route>
+<Route path="/:userId/topics" exact>
+<UserPlaces />
+</Route>
+<Route path="/topics/new" exact>
+<NewPlace/>
+</Route>
+<Route path="/topics/:topicId">
+<UpdatePlace/>
+</Route>
+<Route path="/authorize">
+<Authorize />
+</Route>
+<Redirect to="/"/> */}
