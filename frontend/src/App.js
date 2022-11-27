@@ -2,6 +2,8 @@
 import './App.css';
 import './scss/styles.css'
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
+import { useState } from 'react'
+import { useCallback } from 'react'
 //import { Welcome } from './components/Welcome'
 //import { Destination } from './components/Destination'
 // import { Mainlinks } from './components/Mainlinks'
@@ -13,10 +15,23 @@ import { UserPlaces } from './places/pages/UserPlaces'
 import { MainNavigation } from './shared/components/navigation/MainNavigation'
 import { UpdatePlace } from './places/pages/UpdatePlace'
 import { Authorize } from './user/pages/Authorize'
+import { AuthorizeContext } from './shared/context/AuthorizeContext'
 
 function App() {
+  const [ isLoggedOn, setIsLoggedOn ] = useState(false)
+
+  const logon = useCallback(()=>{
+    setIsLoggedOn(true)
+  }, [])
+
+  const logout = useCallback(()=>{
+    setIsLoggedOn(false)
+  }, [])
+
   return (
     <div>
+      {/* Context needed show or hide components based on the user entered credentials */}
+      <AuthorizeContext.Provider value={{isLoggedOn: isLoggedOn, logon: logon, logout: logout}}>
        <Router>
         <MainNavigation/>
        <main>
@@ -46,6 +61,7 @@ function App() {
         </Switch>
       </main>
       </Router>
+      </AuthorizeContext.Provider>
     </div>
   );
 }
