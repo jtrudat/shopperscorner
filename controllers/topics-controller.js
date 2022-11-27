@@ -26,7 +26,13 @@ const getTopicById = (req, res)=>{
             p.id === placeId
         )
     })
-    res.json({place})
+    if (!place){
+        res.status(404).json({message: 'not found'})
+    }
+    else{
+        res.json({place})
+    }
+    
 }
 
 const getTopicByUserId = (req, res)=>{
@@ -36,7 +42,12 @@ const getTopicByUserId = (req, res)=>{
             u.creator === userId
         )
     })
-    res.json({user})
+    if (!user){
+        res.status(404).json({message: 'not found'})
+    }
+    else{
+        res.json({user})
+    }
 }
 
 exports.getTopicById = getTopicById
