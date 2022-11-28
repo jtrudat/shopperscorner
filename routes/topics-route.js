@@ -10,9 +10,9 @@ topicsrouter.get('/user/:uid', topicsController.getTopicByUserId)
 
 topicsrouter.post('/', topicsController.createTopic)
 
-topicsrouter.patch('/', )
+topicsrouter.put('/:pid', topicsController.updateTopicbyId)
 
-topicsrouter.delete('/', )
+topicsrouter.delete('/:pid', topicsController.deleteTopicbyId)
 
 module.exports = topicsrouter
 

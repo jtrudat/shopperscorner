@@ -1,22 +1,22 @@
 //const uuid = require('uuid/v3')
 
 
-const DUMMY_PLACES = [
+let DUMMY_PLACES = [
     {
         id: 'p1',
-        place: 'empire building',
+        topic: 'empire building',
         description: 'awesome place',
         creator: 'u1'
     },
     {
         id: 'p2',
-        place: 'carmax building',
+        topic: 'carmax building',
         description: 'awesome place',
         creator: 'u2'
     },
     {
         id: 'p3',
-        place: 'industrial building',
+        topic: 'industrial building',
         description: 'awesome place',
         creator: 'u3'
     }
@@ -65,6 +65,26 @@ const createTopic = (req, res) =>{
     res.status(200).json({topic: createdTopic})
 }
 
+const updateTopicbyId = (req, res)=>{
+    const { topic, description } = req.body
+    const topicId = req.params.pid
+    const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
+    const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
+    updatedTopic.topic = topic
+    updatedTopic.description = description
+    DUMMY_PLACES[placeIndex] = updatedTopic
+    res.status(200).json({topic: updatedTopic})
+}
+
+const deleteTopicbyId = (req, res)=>{
+    
+    const topicId = req.params.pid
+    DUMMY_PLACES = DUMMY_PLACES.filter(p => p.id !== topicId)
+    res.status(200).json({message: "deleted"})
+}
+
 exports.getTopicById = getTopicById
 exports.getTopicByUserId = getTopicByUserId
 exports.createTopic = createTopic
+exports.updateTopicbyId = updateTopicbyId
+exports.deleteTopicbyId = deleteTopicbyId
