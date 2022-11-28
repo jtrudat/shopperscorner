@@ -60,24 +60,36 @@ const getTopicsByUserId = (req, res)=>{
     }
 }
 
-const createTopic = new Topic({
-    topic: topic,
-    description : description,
-    image : 'https://placekitten.com/g/200/310',
-    creator : creator
-})
+const createTopic = async (req, res) =>{
+    const { topic, description, creator } = req.body
 
+    const createdTopic = new Topic({
+        topic : topic,
+        description : description,
+        image : 'https://placekitten.com/g/200/310',
+        creator : creator
+    })
+    await createdTopic.save()
+    // const createdTopic ={
+    //     id : String(Math.random()),        
+    //     topic : topic,
+    //     description: description,
+    //     creator : creator
+    // }
+    // DUMMY_PLACES.push(createdTopic)
+     res.status(200).json({topic: createdTopic})
+}
 
-// const updateTopicbyId = (req, res)=>{
-//     const { topic, description } = req.body
-//     const topicId = req.params.pid
-//     const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
-//     const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
-//     updatedTopic.topic = topic
-//     updatedTopic.description = description
-//     DUMMY_PLACES[placeIndex] = updatedTopic
-//     res.status(200).json({topic: updatedTopic})
-// }
+const updateTopicbyId = (req, res)=>{
+    const { topic, description } = req.body
+    const topicId = req.params.pid
+    const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
+    const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
+    updatedTopic.topic = topic
+    updatedTopic.description = description
+    DUMMY_PLACES[placeIndex] = updatedTopic
+    res.status(200).json({topic: updatedTopic})
+}
 
 const deleteTopicbyId = (req, res)=>{
     
