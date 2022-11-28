@@ -4,8 +4,11 @@ const bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-const authRoutes = require('./routes/authroutes')
+//const authRoutes = require('./routes/authroutes')
 const mongoose = require('mongoose')
+const usersRoutes = require('./routes/users-routes')
+const topicsRoute = require('./routes/topics-route')
+
 
 
 //Configuration - PORTS and Server
@@ -25,14 +28,15 @@ app.use(bodyParser.json())
 //NEEDED FOR CROSS ORIGIN REQUESTS
 app.use(cors())
 
-const topicsRoute = require('./routes/topics-route')
-const usersRoute = require('./routes/users-routes')
 
 
+//FORWARDING ALL TRAFFIC TO THE USERS ROUTER
+app.use('/api/users', usersRoutes)
 
-//FORWARDING ALL TRAFFIC TO THE SIGNUP ROUTER CONTROLLER
+//FORWARDING ALL TRAFFIC TO THE TOPICS ROUTER 
 app.use('/api/places', topicsRoute)
 //app.use('/')
+
 
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
