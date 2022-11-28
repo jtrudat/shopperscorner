@@ -1,4 +1,5 @@
 //const uuid = require('uuid/v3')
+const Topic = require('../models/topicsModel') 
 
 
 let DUMMY_PLACES = [
@@ -59,28 +60,24 @@ const getTopicsByUserId = (req, res)=>{
     }
 }
 
-const createTopic = (req, res) =>{
-    const { topic, description, creator } = req.body
-    const createdTopic ={
-        id : String(Math.random()),        
-        topic : topic,
-        description: description,
-        creator : creator
-    }
-    DUMMY_PLACES.push(createdTopic)
-    res.status(200).json({topic: createdTopic})
-}
+const createTopic = new Topic({
+    topic: topic,
+    description : description,
+    image : 'https://placekitten.com/g/200/310',
+    creator : creator
+})
 
-const updateTopicbyId = (req, res)=>{
-    const { topic, description } = req.body
-    const topicId = req.params.pid
-    const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
-    const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
-    updatedTopic.topic = topic
-    updatedTopic.description = description
-    DUMMY_PLACES[placeIndex] = updatedTopic
-    res.status(200).json({topic: updatedTopic})
-}
+
+// const updateTopicbyId = (req, res)=>{
+//     const { topic, description } = req.body
+//     const topicId = req.params.pid
+//     const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
+//     const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
+//     updatedTopic.topic = topic
+//     updatedTopic.description = description
+//     DUMMY_PLACES[placeIndex] = updatedTopic
+//     res.status(200).json({topic: updatedTopic})
+// }
 
 const deleteTopicbyId = (req, res)=>{
     

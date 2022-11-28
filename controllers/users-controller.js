@@ -23,7 +23,7 @@ const signup = (req, res)=>{
 
     const userExist = DUMMY_USERS.find(u => u.email === email)
     if (userExist){
-         throw res.json('user present')
+         return res.json('user present')
     }
 
     const createdUser = {
