@@ -8,6 +8,12 @@ topicsrouter.get('/:pid', topicsController.getTopicById)
 
 topicsrouter.get('/user/:uid', topicsController.getTopicByUserId)
 
+topicsrouter.post('/', topicsController.createTopic)
+
+topicsrouter.patch('/', )
+
+topicsrouter.delete('/', )
+
 module.exports = topicsrouter
 
 

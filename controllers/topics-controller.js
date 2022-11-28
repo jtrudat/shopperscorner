@@ -1,3 +1,6 @@
+//const uuid = require('uuid/v3')
+
+
 const DUMMY_PLACES = [
     {
         id: 'p1',
@@ -50,5 +53,18 @@ const getTopicByUserId = (req, res)=>{
     }
 }
 
+const createTopic = (req, res) =>{
+    const { topic, description, creator } = req.body
+    const createdTopic ={
+        id : String(Math.random()),        
+        topic : topic,
+        description: description,
+        creator : creator
+    }
+    DUMMY_PLACES.push(createdTopic)
+    res.status(200).json({topic: createdTopic})
+}
+
 exports.getTopicById = getTopicById
 exports.getTopicByUserId = getTopicByUserId
+exports.createTopic = createTopic

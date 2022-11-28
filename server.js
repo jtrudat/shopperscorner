@@ -20,7 +20,9 @@ app.use(express.static(path.resolve(__dirname, './frontend/build')))
     
 
 //MIDDLEWARE FOR ALL INCOMING TRAFFIC GOES THROUGH APP.USE PARAMETERS
+//NEEDED FOR ACCURATE DATA PARSING SO THE DATA CAN BE USED APPROPRIATELY BY THE CONTROLLER
 app.use(bodyParser.json())
+//NEEDED FOR CROSS ORIGIN REQUESTS
 app.use(cors())
 
 const topicsRoute = require('./routes/topics-route')
