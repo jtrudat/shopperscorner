@@ -6,7 +6,7 @@ const topicsController = require('../controllers/topics-controller')
 
 topicsrouter.get('/:pid', topicsController.getTopicById)
 
-topicsrouter.get('/user/:uid', topicsController.getTopicByUserId)
+topicsrouter.get('/user/:uid', topicsController.getTopicsByUserId)
 
 topicsrouter.post('/', topicsController.createTopic)
 

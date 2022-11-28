@@ -19,6 +19,12 @@ let DUMMY_PLACES = [
         topic: 'industrial building',
         description: 'awesome place',
         creator: 'u3'
+    },
+    {
+        id: 'p4',
+        topic: 'industrial building',
+        description: 'awesome place',
+        creator: 'u3'
     }
 ]
 
@@ -38,18 +44,18 @@ const getTopicById = (req, res)=>{
     
 }
 
-const getTopicByUserId = (req, res)=>{
+const getTopicsByUserId = (req, res)=>{
     const userId = req.params.uid
-    const user = DUMMY_PLACES.find(u =>{
+    const users = DUMMY_PLACES.filter(u =>{
         return (
             u.creator === userId
         )
     })
-    if (!user){
+    if (!users){
         res.status(404).json({message: 'not found'})
     }
     else{
-        res.json({user})
+        res.json({users})
     }
 }
 
@@ -84,7 +90,7 @@ const deleteTopicbyId = (req, res)=>{
 }
 
 exports.getTopicById = getTopicById
-exports.getTopicByUserId = getTopicByUserId
+exports.getTopicsByUserId = getTopicsByUserId
 exports.createTopic = createTopic
 exports.updateTopicbyId = updateTopicbyId
 exports.deleteTopicbyId = deleteTopicbyId
