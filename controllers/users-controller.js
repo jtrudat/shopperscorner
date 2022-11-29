@@ -23,7 +23,7 @@ let DUMMY_USERS =[
 ]
 
 const getUsers = async (req, res)=>{
-    let users = await User.find({}, 'email name')
+    let users = await User.find({}, 'email name topics')
     // res.status(200).json({users: DUMMY_USERS})
     res.status(200).json({users: users.map(user=>user.toObject())})
 }
