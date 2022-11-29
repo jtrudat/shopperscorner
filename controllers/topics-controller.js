@@ -110,11 +110,15 @@ const updateTopicbyId = async (req, res)=>{
     // DUMMY_PLACES[placeIndex] = updatedTopic
 
 
-const deleteTopicbyId = (req, res)=>{
-    
+const deleteTopicbyId = async (req, res)=>{
     const topicId = req.params.pid
-    DUMMY_PLACES = DUMMY_PLACES.filter(p => p.id !== topicId)
-    res.status(200).json({message: "deleted"})
+    
+    let deletedTopic = await Topic.findByIdAndDelete(topicId)
+    res.status(200).json(deletedTopic)
+
+    // const topicId = req.params.pid
+    // DUMMY_PLACES = DUMMY_PLACES.filter(p => p.id !== topicId)
+    // res.status(200).json({message: "deleted"})
 }
 
 exports.getTopicById = getTopicById
