@@ -1,3 +1,5 @@
+const User = require('../models/userModel')
+
 let DUMMY_USERS =[
     {
         id: 'u1',
@@ -23,24 +25,41 @@ const getUsers = (req, res)=>{
     res.status(200).json({users: DUMMY_USERS})
 }
 
-const signup = (req, res)=>{
+const signup = async (req, res)=>{
     //Minor destructuring to practice DRY
-    const { name, email, password } = req.body
+    const { name, email, password, topics } = req.body
 
-    const userExist = DUMMY_USERS.find(u => u.email === email)
-    if (userExist){
-         return res.json('user present')
+    // const userExist = DUMMY_USERS.find(u => u.email === email)
+    // if (userExist){
+    //      return res.json('user present')
+    // }
+
+    let existingUser = await User.findOne({ email: email})
+    if (existingUser){
+        const error = 'user already exists, go to login'
+        return (error)
     }
 
-    const createdUser = {
-        //Math.random generates a number, so must be converted to string fo query references
-        id: String(Math.random()),
+    //Math.random generates a number, so must be converted to string fo query references
+    
+    // const createdUser = {
+    //     id: String(Math.random()),
+    //     name : name,
+    //     email : email,
+    //     password: password
+    // }
+    // DUMMY_USERS.push(createdUser)
+    // res.status(200).json({createdUser})
+
+    const createdUser = new User({
         name : name,
-        email : email,
-        password: password
-    }
-    DUMMY_USERS.push(createdUser)
-    res.status(200).json({createdUser})
+        email: email,
+        image: "https://placekitten.com/g/200/310",
+        password : password,
+        topics : topics
+    })
+    await createdUser.save()
+    res.status(200).json({user: createdUser.toObject({getters: true})})
 }
 
 const login = (req, res)=>{
