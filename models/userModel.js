@@ -1,4 +1,20 @@
 //DEPENDENCIES
+const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
+const Schema = mongoose.Schema
+
+const userSchema = new Schema({
+    name: String,
+    email: { type: String, unique: true},
+    password: String,
+    image: String,
+    topics: String
+})
+
+userSchema.plugin(uniqueValidator)
+
+module.exports = mongoose.model('User', userSchema)
+
 // const mongoose = require('mongoose')
 // const { Schema } = mongoose
 
