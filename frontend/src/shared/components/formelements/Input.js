@@ -39,14 +39,12 @@ export const Input = (props)=>{
         id={props.id} 
         type={props.type} 
         placeholder={props.placeholder}
-        // onBlur={handlerDataEnter} 
         onChange={changeHandler} 
         value={inState.value}></input>
     ) : (
     <textarea 
         id={props.id} 
         rows={props.rows || 3}
-        // onBlur={handlerDataEnter} 
         onChange={changeHandler} 
         value={inState.value}></textarea>)
 
