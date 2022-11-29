@@ -10,6 +10,12 @@ let DUMMY_USERS =[
         name: ' Moe Doe',
         email: 'm@gmail.com',
         password: 'dummyuser2'
+    },
+    {
+        id: 'u3',
+        name: 'Frank Tank',
+        email: 'ft@gmail.com',
+        password: 'dummyuser3'
     }
 ]
 

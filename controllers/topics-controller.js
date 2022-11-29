@@ -29,34 +29,42 @@ let DUMMY_PLACES = [
     }
 ]
 
-const getTopicById = (req, res)=>{
+const getTopicById = async (req, res)=>{
     const placeId = req.params.pid
-    const place = DUMMY_PLACES.find(p =>{
-        return (
-            p.id === placeId
-        )
-    })
+    let place = await Topic.findById(placeId)
+     
+    // catch (err){
+    //     const error = 'something went wrong, invalid'
+    //     return (error)
+    // }
+    // DUMMY_PLACES.find(p =>{
+    //     return (
+    //         p.id === placeId
+    //     )
+    // })
     if (!place){
-        res.status(404).json({message: 'not found'})
+        return res.status(404).json({message: 'not found'})
     }
     else{
-        res.json({place})
+        res.json({place: place.toObject( {getters: true} )})
     }
     
 }
 
-const getTopicsByUserId = (req, res)=>{
+const getTopicsByUserId = async (req, res)=>{
     const userId = req.params.uid
-    const users = DUMMY_PLACES.filter(u =>{
-        return (
-            u.creator === userId
-        )
-    })
+    let users = await Topic.find({creator : userId})
+    
+    // DUMMY_PLACES.filter(u =>{
+    //     return (
+    //         u.creator === userId
+    //     )
+    // })
     if (!users){
         res.status(404).json({message: 'not found'})
     }
     else{
-        res.json({users})
+        res.json({places : users.map(users =>users.toObject({getters: true}))})
     }
 }
 
@@ -80,16 +88,27 @@ const createTopic = async (req, res) =>{
      res.status(200).json({topic: createdTopic})
 }
 
-const updateTopicbyId = (req, res)=>{
+const updateTopicbyId = async (req, res)=>{
     const { topic, description } = req.body
     const topicId = req.params.pid
-    const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
-    const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
+
+    let updatedTopic = await Topic.findById(topicId)
+  
     updatedTopic.topic = topic
     updatedTopic.description = description
-    DUMMY_PLACES[placeIndex] = updatedTopic
-    res.status(200).json({topic: updatedTopic})
+    await updatedTopic.save()
+    res.status(200).json({topic: updatedTopic.toObject({getters: true})})
 }
+
+    // const updatedTopic = {...DUMMY_PLACES.find(p => p.id === topicId)}
+    // const placeIndex = DUMMY_PLACES.findIndex(p => p.id === topicId)
+
+    // updatedTopic.topic = topic
+    // updatedTopic.description = description
+    // await updatedTopic.save()
+    // res.status(200).json({topic: updatedTopic. toObject({getters: true})})
+    // DUMMY_PLACES[placeIndex] = updatedTopic
+
 
 const deleteTopicbyId = (req, res)=>{
     
