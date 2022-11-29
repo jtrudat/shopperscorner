@@ -62,15 +62,22 @@ const signup = async (req, res)=>{
     res.status(200).json({user: createdUser.toObject({getters: true})})
 }
 
-const login = (req, res)=>{
+const login = async (req, res)=>{
     //Minor destructuring to practice DRY
     const { email, password } = req.body
 
-    const identifiedUser = DUMMY_USERS.find(u => u.email === email)
-    if (!identifiedUser || identifiedUser.password !== password){
+    let existingUser = await User.findOne({ email: email})
+
+    if (!existingUser || existingUser.password !== password){
         res.status(400).json({message: 'sorry cant not verify'})
     }
-    else{res.status(200).json(`welcome and logged in for ${identifiedUser.email}`)}
+    else{res.status(200).json(`welcome and logged in for ${existingUser.email}`)}
+
+    // const identifiedUser = DUMMY_USERS.find(u => u.email === email)
+    // if (!identifiedUser || identifiedUser.password !== password){
+    //     res.status(400).json({message: 'sorry cant not verify'})
+    // }
+    // else{res.status(200).json(`welcome and logged in for ${identifiedUser.email}`)}
 }
 
 exports.getUsers = getUsers
