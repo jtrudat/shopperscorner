@@ -1,4 +1,5 @@
 const User = require('../models/userModel')
+const Topic = require('../models/topicsModel')
 
 let DUMMY_USERS =[
     {
@@ -21,13 +22,15 @@ let DUMMY_USERS =[
     }
 ]
 
-const getUsers = (req, res)=>{
-    res.status(200).json({users: DUMMY_USERS})
+const getUsers = async (req, res)=>{
+    let users = await User.find({}, 'email name')
+    // res.status(200).json({users: DUMMY_USERS})
+    res.status(200).json({users: users.map(user=>user.toObject())})
 }
 
 const signup = async (req, res)=>{
     //Minor destructuring to practice DRY
-    const { name, email, password, topics } = req.body
+    const { name, email, password } = req.body
 
     // const userExist = DUMMY_USERS.find(u => u.email === email)
     // if (userExist){
@@ -56,10 +59,10 @@ const signup = async (req, res)=>{
         email: email,
         image: "https://placekitten.com/g/200/310",
         password : password,
-        topics : topics
+        topics : []
     })
     await createdUser.save()
-    res.status(200).json({user: createdUser.toObject({getters: true})})
+    res.status(200).json({user: createdUser.toObject()})
 }
 
 const login = async (req, res)=>{

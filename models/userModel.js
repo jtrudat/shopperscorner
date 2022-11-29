@@ -8,7 +8,7 @@ const userSchema = new Schema({
     email: { type: String, unique: true},
     password: String,
     image: String,
-    topics: String
+    topics: [{ type: mongoose.Types.ObjectId, ref: 'Topic'}]
 })
 
 userSchema.plugin(uniqueValidator)
