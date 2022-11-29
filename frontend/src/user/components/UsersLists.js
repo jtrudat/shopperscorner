@@ -18,7 +18,7 @@ export const UsersList = (props) => {
                         id={user._id} 
                         image={user.image} 
                         name={user.name}
-                         placeCount={user.topics.length} />
+                        placeCount={user.topics.length} />
                 )
             })}
         </ul>
