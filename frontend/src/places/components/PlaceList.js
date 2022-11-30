@@ -19,14 +19,13 @@ export const PlaceList = (props)=>{
         <ul className="place-list">
             {props.items.map(topic => 
                     <PlaceItem 
-                    key={topic.id} 
-                    id={topic.id} 
-                    image={topic.imageUrl} 
+                    key={topic._id} 
+                    id={topic._id} 
+                    image={topic.image} 
                     topic={topic.topic} 
                     description={topic.description} 
-                    address={topic.address} 
                     creatorId={topic.creator} 
-                    coordinates={topic.location}/>)}
+                    />)}
         </ul>
     )
 }
