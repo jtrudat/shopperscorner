@@ -74,7 +74,7 @@ const login = async (req, res)=>{
     if (!existingUser || existingUser.password !== password){
         res.status(400).json({message: 'sorry cant not verify'})
     }
-    else{res.status(200).json(`welcome and logged in for ${existingUser.email}`)}
+    else{res.status(200).json({user: existingUser.toObject()})}
 
     // const identifiedUser = DUMMY_USERS.find(u => u.email === email)
     // if (!identifiedUser || identifiedUser.password !== password){

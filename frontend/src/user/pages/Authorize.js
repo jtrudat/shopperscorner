@@ -27,28 +27,28 @@ export const Authorize =()=>{
         }
     })
 
-    const handleLoginSubmit = (evt)=>{
+    const handleLoginSubmit = async (evt)=>{
         evt.preventDefault()
         //console.log(formState.inputs)
         setIsLoading(true)
         if (isLogin){
-        axios.post('/api/users/login', {
+          let response = await axios.post('/api/users/login', {
             email : formState.inputs.email.value,
             password : formState.inputs.password.value
             })
             .then(response =>{
-                console.log(response.data)
+                console.log(response.data.user._id)
             })
         }
         else{
             
-        axios.post('/api/users/signup', {
+            let response = await axios.post('/api/users/signup', {
             name : formState.inputs.name.value,
             email : formState.inputs.email.value,
             password : formState.inputs.password.value
             })
             .then(response =>{
-            console.log(response.data)
+            console.log(response.data.user._id)
             })}
         setIsLoading(false)
         auth.login()

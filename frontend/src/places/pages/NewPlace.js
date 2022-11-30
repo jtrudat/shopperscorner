@@ -5,11 +5,14 @@ import { Input } from '../../shared/components/formelements/Input'
 //import { VALIDATOR_REQUIRE } from '../../shared/checker/validators'
 import { Button } from '../../shared/components/formelements/Button'
 import { useForm } from '../../shared/custom/hkform'
+import axios from 'axios'
+import { useContext } from 'react'
+import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 
 
 
 export const NewPlace = ()=>{
-
+    const authority = useContext(AuthorizeContext)
     const [ formState, handleInput] = useForm({
         topic: {
             value: ''
@@ -20,9 +23,36 @@ export const NewPlace = ()=>{
     })
 
 
-    const handleSubmitTopic = (evt)=>{
+    const handleSubmitTopic = async (evt)=>{
         evt.preventDefault()
-        console.log(formState.inputs)
+        //console.log(formState.inputs.description.value)
+        // console.log(authority.userId)
+
+
+        await axios.post('/api/places', {
+        topic : formState.inputs.topic.value,
+        description : formState.inputs.description.value,
+        creator : authority.userId
+        })
+        .then(()=>{
+            console.log(authority.userId)
+        })
+
+
+
+        //         const response = await fetch('http://localhost:4100/api/users/signup', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//         topic: formState.inputs.topic.value,
+//         description: formState.inputs.description.value,
+//         creator: ''
+//     })
+// })
+// const responseData = await response.json()
+
     }
 
     return(
