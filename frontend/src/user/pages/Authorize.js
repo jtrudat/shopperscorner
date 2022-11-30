@@ -10,7 +10,7 @@ import axios from 'axios'
 
 
 export const Authorize =()=>{
-
+    let userTag;
     const auth = useContext(AuthorizeContext)
 
     const [ isLogin, setIsLogin ] = useState(true)
@@ -38,10 +38,12 @@ export const Authorize =()=>{
             })
             .then(response =>{
                 console.log(response.data.user._id)
+                userTag = response.data.user._id
+                console.log(userTag)
             })
         }
         else{
-            
+            let userTag
             let response = await axios.post('/api/users/signup', {
             name : formState.inputs.name.value,
             email : formState.inputs.email.value,
@@ -49,9 +51,11 @@ export const Authorize =()=>{
             })
             .then(response =>{
             console.log(response.data.user._id)
+            userTag = response.data.user._id
+            console.log(userTag)
             })}
         setIsLoading(false)
-        auth.login()
+        auth.login(userTag)
     }
 
     const handleLoginMode = ()=>{
