@@ -10,7 +10,7 @@ import axios from 'axios'
 
 
 export const Authorize =()=>{
-    let userTag;
+    //const [userTag, setUserTag] = useState('')
     const auth = useContext(AuthorizeContext)
 
     const [ isLogin, setIsLogin ] = useState(true)
@@ -32,30 +32,39 @@ export const Authorize =()=>{
         //console.log(formState.inputs)
         setIsLoading(true)
         if (isLogin){
-          let response = await axios.post('/api/users/login', {
+            axios.post('/api/users/login', {
             email : formState.inputs.email.value,
             password : formState.inputs.password.value
             })
             .then(response =>{
                 console.log(response.data.user._id)
-                userTag = response.data.user._id
-                console.log(userTag)
+                //setUserTag = response.data.user._id
+                // console.log(userTag)
+                setIsLoading(false)
+                auth.login(response.data.user._id)
             })
         }
         else{
-            let userTag
-            let response = await axios.post('/api/users/signup', {
+            
+            await axios.post('/api/users/signup', {
             name : formState.inputs.name.value,
             email : formState.inputs.email.value,
             password : formState.inputs.password.value
             })
             .then(response =>{
             console.log(response.data.user._id)
-            userTag = response.data.user._id
-            console.log(userTag)
+            //setUserTag = response.data.user._id
+            //console.log(userTag)
+            setIsLoading(false)
+            auth.login(response.data.user._id)
             })}
-        setIsLoading(false)
-        auth.login(userTag)
+        // setIsLoading(false)
+        // auth.login(response.data.user._id)
+    }
+
+    const idSync =()=>{
+       
+       // console.log(userTag)
     }
 
     const handleLoginMode = ()=>{
@@ -93,6 +102,7 @@ export const Authorize =()=>{
                 <Button type="submit">{isLogin ? 'LOGIN' : "SIGN UP"}</Button>
             </form>
             <Button onClick={handleLoginMode}> change to {isLogin ? 'sign up' : 'login'}</Button>
+            <button onClick={idSync}>MyID</button>
         </Card>
     )
 }

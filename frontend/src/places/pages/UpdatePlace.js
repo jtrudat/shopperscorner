@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom'
 import { Input } from '../../shared/components/formelements/Input'
 import { Button } from '../../shared/components/formelements/Button'
 import { useForm } from '../../shared/custom/hkform'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const DUMMY_PLACES = [
     {
@@ -46,6 +49,17 @@ const DUMMY_PLACES = [
 export const UpdatePlace=()=>{
 
     const topicId = useParams().topicId
+
+//    // const authority = useContext(AuthorizeContext)
+//     const [loadedPlaces, setLoadedPlaces ] = useState('')
+
+//     useEffect(()=>{
+//         axios.get(`/api/places/user/6386daa3e69c0129febe9efa`)
+//         .then((response)=>{
+//             console.log(response.data.places)
+//             setLoadedPlaces(response.data.places)
+//         })
+//     }, [])
 
     const identifiedTopic = DUMMY_PLACES.find((t)=>
         t.id === topicId
