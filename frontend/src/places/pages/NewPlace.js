@@ -8,6 +8,7 @@ import { useForm } from '../../shared/custom/hkform'
 import axios from 'axios'
 import { useContext } from 'react'
 import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -22,12 +23,12 @@ export const NewPlace = ()=>{
         }
     })
 
+const refresh = useHistory()
 
     const handleSubmitTopic = async (evt)=>{
         evt.preventDefault()
         //console.log(formState.inputs.description.value)
         // console.log(authority.userId)
-
 
         await axios.post('/api/places', {
         topic : formState.inputs.topic.value,
@@ -36,6 +37,7 @@ export const NewPlace = ()=>{
         })
         .then(()=>{
             console.log(authority.userId)
+            refresh.push('/')
         })
 
 
@@ -55,7 +57,12 @@ export const NewPlace = ()=>{
 
     }
 
+const idSync = ()=>{
+    console.log(authority.userId)
+}
+
     return(
+        
         <form className="place-form" onSubmit={handleSubmitTopic}>
             <Input 
                 id="topic" 
@@ -72,8 +79,8 @@ export const NewPlace = ()=>{
                 validators={[]} 
                 onInput={handleInput}/>
             <Button type="submit">add this topic</Button>
+            <button onClick={idSync}>MYID</button>
             </form>
-            
     )
 }
 
