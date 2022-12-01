@@ -48,7 +48,7 @@ const DUMMY_PLACES = [
 
 export const UpdatePlace=()=>{
 
-    const topicId = useParams().topicId
+    const topicId = useParams().userId
 
 //    // const authority = useContext(AuthorizeContext)
 //     const [loadedPlaces, setLoadedPlaces ] = useState('')
