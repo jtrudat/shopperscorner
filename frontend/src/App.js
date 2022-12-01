@@ -7,13 +7,14 @@ import { useCallback } from 'react'
 //import { Welcome } from './components/Welcome'
 //import { Destination } from './components/Destination'
 // import { Mainlinks } from './components/Mainlinks'
-import { Signup } from './components/views/customer/auth/Signup'
-import { Login } from './components/views/customer/auth/Login'
+//import { Signup } from './components/views/customer/auth/Signup'
+//import { Login } from './components/views/customer/auth/Login'
 import { Users } from './user/pages/Users'
 import { NewPlace } from './places/pages/NewPlace'
 import { UserPlaces } from './places/pages/UserPlaces'
 import { MainNavigation } from './shared/components/navigation/MainNavigation'
-import { UpdatePlace } from './places/pages/UpdatePlace'
+//import { UpdatePlace } from './places/pages/UpdatePlace'
+import { UpdatePlace2 } from './places/pages/UpdatePlace2'
 import { Authorize } from './user/pages/Authorize'
 import { AuthorizeContext } from './shared/context/AuthorizeContext'
 
@@ -47,7 +48,7 @@ function App() {
               <NewPlace/>
         </Route>
         <Route path="/topics/:topicId">
-              <UpdatePlace/>
+              <UpdatePlace2/>
         </Route>
         <Redirect to="/"></Redirect>
       </Switch>

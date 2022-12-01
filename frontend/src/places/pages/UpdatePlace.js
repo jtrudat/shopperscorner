@@ -6,6 +6,7 @@ import { useForm } from '../../shared/custom/hkform'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+// import { useHistory } from 'react'
 
 // const DUMMY_PLACES = [
 //     {
@@ -52,7 +53,8 @@ export const UpdatePlace=  ()=>{
 
 //    // const authority = useContext(AuthorizeContext)
     const [loadedPlaces, setLoadedPlaces ] = useState('')
-
+    
+    // const refresh = useHistory()
     useEffect(()=>{
         axios.get(`/api/places/${topicId}`)
         .then((response)=>{
@@ -88,15 +90,22 @@ export const UpdatePlace=  ()=>{
             
         )
     }
-
-    const handlerUpdateTopic = (evt)=>{
+    
+    const handlerUpdateTopic = async (evt)=>{
         evt.preventDefault()
-        console.log(formState.inputs)
-        console.log(loadedPlaces)
-        console.log(topicId)
+        await axios.put(`/api/places/${topicId}`, {
+            topic : formState.inputs.topic.value,
+            description : formState.inputs.description.value,
+        
+            })
+            .then((response)=>{
+               console.log(response)
+              
+            })
     }
 
     return(
+        
         <form className="place-form" onSubmit={handlerUpdateTopic}>
             <Input 
                 id="topic" 
