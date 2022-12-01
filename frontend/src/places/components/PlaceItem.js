@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const PlaceItem = (props)=>{
 
@@ -30,7 +31,7 @@ export const PlaceItem = (props)=>{
             </div>
             <div className="place-item__actions">
                 {/* <Button inverse>VIEW ON MAP</Button> */}
-                {authority.isLoggedIn && (<button to={`/topics/${props.id}`}>EDIT</button>)}
+                {authority.isLoggedIn && (<NavLink to={`/topics/${props.id}`}>EDIT</NavLink>)}
                 {authority.isLoggedIn && (<button id={props.id} onClick={handleDelete}>DELETE</button>)}
             </div>
             </Card>

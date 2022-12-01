@@ -20,6 +20,7 @@ import { AuthorizeContext } from './shared/context/AuthorizeContext'
 function App() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [ userId, setUserId ] = useState(false)
+  
 
   const login = useCallback((uid)=>{
     setIsLoggedIn(true)
@@ -74,7 +75,7 @@ function App() {
     <div>
       {/* Context needed show or hide components based on the user entered credentials */}
       <AuthorizeContext.Provider 
-        value={{ isLoggedIn: isLoggedIn, userId: userId, login: login, logout: logout}}>
+        value={{ isLoggedIn: isLoggedIn, userId: userId, login: login, logout: logout }}>
        <Router>
         <MainNavigation/>
        <main>
