@@ -48,13 +48,13 @@ const DUMMY_PLACES = [
 
 export const UpdatePlace=()=>{
 
-    const topicId = useParams().userId
+    const topicId = useParams().topicId
 
 //    // const authority = useContext(AuthorizeContext)
 //     const [loadedPlaces, setLoadedPlaces ] = useState('')
 
 //     useEffect(()=>{
-//         axios.get(`/api/places/user/6386daa3e69c0129febe9efa`)
+//         axios.get(`/api/places/topicId`)
 //         .then((response)=>{
 //             console.log(response.data.places)
 //             setLoadedPlaces(response.data.places)

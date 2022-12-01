@@ -26,12 +26,11 @@ export const PlaceItem = (props)=>{
             </div>
             <div className="place-item__info">
                 <h2>{props.topic}</h2>
-                {/* <h3>{props.topic}</h3> */}
                 <p>{props.description}</p>
             </div>
             <div className="place-item__actions">
                 {/* <Button inverse>VIEW ON MAP</Button> */}
-                {authority.isLoggedIn && (<Button to={`/topics/${props.id}`}>EDIT</Button>)}
+                {authority.isLoggedIn && (<button to={`/topics/${props.id}`}>EDIT</button>)}
                 {authority.isLoggedIn && (<button id={props.id} onClick={handleDelete}>DELETE</button>)}
             </div>
             </Card>
