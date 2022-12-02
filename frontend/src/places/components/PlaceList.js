@@ -5,6 +5,7 @@ import { Button } from '../../shared/components/formelements/Button'
 
 export const PlaceList = (props)=>{
     
+    //THIS IF STATEMENT IS BASED ON THE LENGTH DEFINED IN THE USERPLACE COMPONENT
     if (props.items.length === 0) {
         return(
             <div className="place-list center">
@@ -15,6 +16,8 @@ export const PlaceList = (props)=>{
             </div>
         )
     }
+
+    //THE RESPONSE.DATA REFERS TO THE MONGO ID AS ._ID. ONCE THE ._ID IS INITIALLY DEFINED IN THE BROWSER IT IS REFFERRED TO AS .ID
     return(
         <ul className="place-list">
             {props.items.map(topic => 

@@ -1,21 +1,19 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-//import { Input } from '../../shared/components/formelements/Input'
-//import { Button } from '../../shared/components/formelements/Button'
-//import { useForm } from '../../shared/custom/hkform'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
  import { useHistory } from 'react-router-dom'
 
 export const UpdatePlace2 = ()=>{
+    //USEPARAMS IS DESIGNED TO THE CURRENT TOPIC ID USED FOR REFERENCE BY AXIOS AND TOPIC ROUTER TO UPDATE THE CORRECT TOPIC
     const topicId = useParams().topicId
     const [ changeTopic, setChangeTopic] = useState('')
     const [ changeDescription, setChangeDescription] = useState('')
     const [ loadedPlaces, setLoadedPlaces] = useState('')
     const history = useHistory()
 
-    
+    //A HOOK DESIGNED TO ENSURE THE UPDATED STATE 
     useEffect(()=>{
         axios.get(`/api/places/${topicId}`)
         .then((response)=>{
@@ -23,10 +21,11 @@ export const UpdatePlace2 = ()=>{
         })
     }, [])
 
+    //A RENDER INDICATING THAT THE TOPIC WAS INAPPROPRIATLEY DISASSOCIATED FROM THE USER AND THAT A MANUAL FIX IN THE DATABASE WILL NEED TO BE MADE  
     if(!loadedPlaces){
         return(
             <div>
-                <h2>no places yet</h2>
+                <h2>TOPIC DOES NOT EXIST</h2>
             </div>
         )
     }
@@ -44,8 +43,8 @@ export const UpdatePlace2 = ()=>{
             topic: changeTopic,
             description: changeDescription
         })
+        //THIS PUSH IS AN EFFICIENT WAY TO SEND THE USER BACK TO THE TOPICS TO VIEW THE UDPATED CHANGES
         .then((response)=>{
-            console.log(response.data)
              history.push('/user/topics')
         })
         
@@ -64,5 +63,3 @@ export const UpdatePlace2 = ()=>{
         </div>
     )
 }
-// }value={loadedPlaces.topic}
-// value={loadedPlaces.description}

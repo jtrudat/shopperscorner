@@ -1,3 +1,6 @@
+
+//THIS COMPONENT IS NOT USED. WORKING SOLUTION IS IN UPDATEPLACE2 
+
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Input } from '../../shared/components/formelements/Input'
@@ -46,6 +49,7 @@ import { useState } from 'react'
 //         creator: 'u1'
 //     }
 // ]
+
 
 export const UpdatePlace=  ()=>{
 

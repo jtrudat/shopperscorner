@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card } from '../../shared/components/uielements/Card'
-import { Button } from '../../shared/components/formelements/Button'
+// import { Button } from '../../shared/components/formelements/Button'
 import { useContext } from 'react'
 import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import axios from 'axios'
@@ -8,10 +8,13 @@ import { useHistory } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 export const PlaceItem = (props)=>{
-
+    //CONTEXT IS USED TO GRAB THE USERS MONGO ID FROM INTIAL LOGIN RES.JSON. FROM THERE THE STATUS OF THE IS LOOGED IN 
+    // AND USER ID STATE IS MADE AVAILBALE TO ALL CHILDREN COMPONENTS OF APP.JS AND CAN BE USED TO SHOW 
     const authority = useContext(AuthorizeContext)
-    const refresh = useHistory()
 
+    // const refresh = useHistory() //A PAGE REFRESH OR USEEFFECT IS NOT NEEDED FOR THE COMPONENT TO RERENDER
+
+    //DELETES THE TOPIC FROM THE DATABASE. THE CONTROLLER ALSO CONTAINS THE LOGIC TO DELETE THE ASSOCIATION WITHIN THE CREATORS(USER) ARRAY
     const handleDelete=(evt)=>{
         let idTag = evt.target.id
         console.log(`${idTag}`)
@@ -30,7 +33,6 @@ export const PlaceItem = (props)=>{
                 <p>{props.description}</p>
             </div>
             <div className="place-item__actions">
-                {/* <Button inverse>VIEW ON MAP</Button> */}
                 {authority.isLoggedIn && (<NavLink to={`/topics/${props.id}`}>EDIT</NavLink>)}
                 {authority.isLoggedIn && (<button id={props.id} onClick={handleDelete}>DELETE</button>)}
             </div>

@@ -1,8 +1,5 @@
 import React from 'react'
-// import { useCallback } from 'react'
-// import { useReducer } from 'react'
 import { Input } from '../../shared/components/formelements/Input'
-//import { VALIDATOR_REQUIRE } from '../../shared/checker/validators'
 import { Button } from '../../shared/components/formelements/Button'
 import { useForm } from '../../shared/custom/hkform'
 import axios from 'axios'
@@ -13,6 +10,8 @@ import { useHistory } from 'react-router-dom'
 
 
 export const NewPlace = ()=>{
+    //USECONTEXT USED TO GET THE USERS ID FROM THE INITIAL LOGIN RES.JSON FOR THE CREATORS BLOCK OF THE TOPIC MODEL
+    //THIS IS A KEY VALUE FOR THE 1 TO MANY BINDING WITHIN THE TOPICS CONTROLLER
     const authority = useContext(AuthorizeContext)
     const [ formState, handleInput] = useForm({
         topic: {
@@ -23,13 +22,12 @@ export const NewPlace = ()=>{
         }
     })
 
-const refresh = useHistory()
+    const refresh = useHistory()
 
+    //AXIOS IS THE PREFERRED METHOD TO PROXY TO THE SERVER. THIS AXIOS REQUEST IS ROUTED TO THE TOPICS CONTROLLER WHICH USES THE TOPIC MODEL
+    //TO FINALIZE THE COMPLETETION. THIS IS PROCESS ALSO INCLUDES THE 1 TO MANY USER TO TOPICS ASSOCIATION WHICH IS ACCOMPLISHED THROUGH MONGO DB SESSIONS
     const handleSubmitTopic = async (evt)=>{
         evt.preventDefault()
-        //console.log(formState.inputs.description.value)
-        // console.log(authority.userId)
-
         await axios.post('/api/places', {
         topic : formState.inputs.topic.value,
         description : formState.inputs.description.value,
@@ -40,26 +38,9 @@ const refresh = useHistory()
             refresh.push('/')
         })
 
-
-
-        //         const response = await fetch('http://localhost:4100/api/users/signup', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//         topic: formState.inputs.topic.value,
-//         description: formState.inputs.description.value,
-//         creator: ''
-//     })
-// })
-// const responseData = await response.json()
-
     }
 
-const idSync = ()=>{
-    console.log(authority.userId)
-}
+
 
     return(
         
@@ -79,7 +60,6 @@ const idSync = ()=>{
                 validators={[]} 
                 onInput={handleInput}/>
             <Button type="submit">add this topic</Button>
-            <button onClick={idSync}>MYID</button>
             </form>
     )
 }

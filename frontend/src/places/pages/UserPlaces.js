@@ -6,6 +6,28 @@ import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import { useContext } from 'react'
 import { useState } from 'react'
 
+
+
+export const UserPlaces = ()=>{
+    const authority = useContext(AuthorizeContext)
+    const userId = authority.userId
+    const [ userTopics, setUserTopics ] = useState('')
+
+    //USECONTEXT STATE STORED FROM INITIAL LOGIN IS CALLED UPON TO INJECT THE CURRENT USERID USED TO GET AND MAP OUT ALL ASSOCIATED TOPICS
+    axios.get(`/api/places/user/${userId}`)
+    .then((response)=>{
+        setUserTopics(response.data.places)
+    })
+
+
+    return (
+        <PlaceList items={userTopics}/>
+    )
+}
+
+
+
+
 // const DUMMY_PLACES = [
 //     {
 //         id: 'p1',
@@ -44,22 +66,3 @@ import { useState } from 'react'
 //         creator: 'u1'
 //     }
 // ]
-
-export const UserPlaces = ()=>{
-    const authority = useContext(AuthorizeContext)
-    const userId = authority.userId
-    const [ userTopics, setUserTopics ] = useState('')
-
-    axios.get(`/api/places/user/${userId}`)
-    .then((response)=>{
-        setUserTopics(response.data.places)
-    })
-
-
-    
-    
-    //DUMMY_PLACES.filter(place => place.creator === userId)
-    return (
-        <PlaceList items={userTopics}/>
-    )
-}
