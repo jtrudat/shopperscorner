@@ -2,9 +2,16 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthorizeContext } from '../../context/AuthorizeContext'
+import { useHistory } from 'react-router-dom'
 
 export const NavLinks = (props)=>{
     const authority = useContext(AuthorizeContext)
+    const history = useHistory()
+
+    const handlerLogout =()=>{
+        history.push('/')
+        authority.logout()
+    }
 
     return(
         <ul className="nav-links">
@@ -25,7 +32,7 @@ export const NavLinks = (props)=>{
             </li>)}
             {authority.isLoggedIn && (
                 <li>
-                <button onClick={authority.logout}>EXIT</button>
+                <button onClick={handlerLogout}>EXIT</button>
             </li>
             )}
             🔜
