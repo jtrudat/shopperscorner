@@ -13,7 +13,7 @@ export const NavLinks = (props)=>{
             </li>
             {authority.isLoggedIn && (
             <li>
-                <NavLink to="/u1/topics">MY TOPICS</NavLink>
+                <NavLink to="/user/topics">MY TOPICS</NavLink>
             </li>)}
             {authority.isLoggedIn && (
             <li>

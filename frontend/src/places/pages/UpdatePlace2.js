@@ -6,12 +6,14 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+ import { useHistory } from 'react-router-dom'
 
 export const UpdatePlace2 = ()=>{
     const topicId = useParams().topicId
     const [ changeTopic, setChangeTopic] = useState('')
     const [ changeDescription, setChangeDescription] = useState('')
     const [ loadedPlaces, setLoadedPlaces] = useState('')
+    const history = useHistory()
 
     
     useEffect(()=>{
@@ -44,17 +46,20 @@ export const UpdatePlace2 = ()=>{
         })
         .then((response)=>{
             console.log(response.data)
+             history.push('/user/topics')
         })
+        
     }
 
     return(
         <div>
             <label>Topic</label>
-            <input type="text"  defaultValue={loadedPlaces.topic} onChange={handleChangeTopic}></input>
+            <input type="text"  size="60" defaultValue={loadedPlaces.topic} onChange={handleChangeTopic}></input>
             <br></br>
             <label>Description</label>
-            <input type="text"  defaultValue={loadedPlaces.description} onChange={handleChangeDescription}></input>
-            <button onClick={handleSubmitTopic}>ready to update</button>
+            <textarea type="text"  rows="4" cols="60" defaultValue={loadedPlaces.description} onChange={handleChangeDescription}></textarea>
+            <br></br>
+            <button onClick={handleSubmitTopic}>update</button>
             
         </div>
     )
