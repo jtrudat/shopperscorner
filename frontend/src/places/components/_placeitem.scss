@@ -1,3 +1,4 @@
+// STYLING STARTS OFF AS SCSS AND THEN COMPILES INTO A MASTER CSS LISTING IMPORTED INTO APP.JS
 .place-item {
     margin: 1rem 0;
   }
@@ -47,7 +48,7 @@
   .place-item__actions a {
     margin: 0.5rem;
   }
-  
+  // RESETS SIZING FOR SMALLER VIEWING DEVICES
   @media (min-width: 768px) {
     .place-item__image {
       height: 20rem;

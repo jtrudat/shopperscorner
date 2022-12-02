@@ -1,10 +1,9 @@
-
 const Topic = require('../models/topicsModel') 
 const User = require('../models/userModel')
 const mongoose = require('mongoose')
 
 
-
+//FINDS THE TOPIC BY THE TOPIC'S MONGO ID
 const getTopicById = async (req, res)=>{
     const placeId = req.params.pid
     let place = await Topic.findById(placeId)
@@ -19,6 +18,7 @@ const getTopicById = async (req, res)=>{
     
 }
 
+//FINDS ALL TOPICS ASSIGNED TO THE ARRAY ASSOCIATED WITH THE USER'S ID
 const getTopicsByUserId = async (req, res)=>{
     const userId = req.params.uid
     let users = await Topic.find({creator : userId})
@@ -32,6 +32,8 @@ const getTopicsByUserId = async (req, res)=>{
     }
 }
 
+// ONE TO MANY ASSOCIATION WITHIN A SINGLE SESSION - CREATES A NEW TOPIC, ASSIGNS THE MONGO ID, AND USES A DB SESSION
+// TO ASSOCIATE THE NEW TOPIC ID TO THE CREATOR(USER) ID
 const createTopic = async (req, res) =>{
     const { topic, description, creator } = req.body
 
@@ -53,6 +55,7 @@ const createTopic = async (req, res) =>{
      res.status(200).json({topic: createdTopic})
 }
 
+// UPDATES TOPIC BY ASSIGNED MONG ID
 const updateTopicbyId = async (req, res)=>{
     const { topic, description } = req.body
     const topicId = req.params.pid
@@ -66,8 +69,7 @@ const updateTopicbyId = async (req, res)=>{
 }
 
     
-
-
+//DELETES TOPIC BY ASSIGNED MONGO ID AND REMOVES ASSOCIATION WITHIN THE CREATOR'S ARRAY OF TOPICS 
 const deleteTopicbyId = async (req, res)=>{
     const topicId = req.params.pid
     
@@ -78,12 +80,9 @@ const deleteTopicbyId = async (req, res)=>{
     deletedTopic.creator.topics.pull(deletedTopic)
     await deletedTopic.creator.save({session: sess})
     await sess.commitTransaction()
-    
     res.status(200).json({message: 'deleted'})
 }
    
-
-
 
 exports.getTopicById = getTopicById
 exports.getTopicsByUserId = getTopicsByUserId
@@ -118,10 +117,7 @@ exports.deleteTopicbyId = deleteTopicbyId
 //     }
 // ]
 
-// catch (err){
-    //     const error = 'something went wrong, invalid'
-    //     return (error)
-    // }
+
     // DUMMY_PLACES.find(p =>{
     //     return (
     //         p.id === placeId
@@ -150,15 +146,3 @@ exports.deleteTopicbyId = deleteTopicbyId
     // await updatedTopic.save()
     // res.status(200).json({topic: updatedTopic. toObject({getters: true})})
     // DUMMY_PLACES[placeIndex] = updatedTopic
-
-    
-
-
-
-// await deletedTopic.remove()
-// let deletedTopic = await Topic.findByIdAndDelete(topicId)
-    // res.status(200).json(deletedTopic)
-
-    // const topicId = req.params.pid
-    // DUMMY_PLACES = DUMMY_PLACES.filter(p => p.id !== topicId)
-    // res.status(200).json({message: "deleted"})
