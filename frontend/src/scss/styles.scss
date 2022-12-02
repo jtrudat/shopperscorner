@@ -1,6 +1,5 @@
-// @import "title";
-// @import 'mainlinks';
-// @import 'signup';
+//ALL COMPONENTS AND RETURNS THAT HAVE STYLING HAVE THE STYLES IMPORTED HERE FOR CONSOLIDATION BEFORE BEING
+//MAPPED AND IMPORTED INTO APP.JS WERE THEY ARE RENDERED DOWN THROUGH PARENT CHILD ASSOCIATION
 @import '../user/components/userslist';
 @import '../user/components/useritem';
 @import '../shared/components/uielements/avatar';

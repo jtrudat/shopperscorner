@@ -1,6 +1,6 @@
 import React from 'react'
 import { PlaceList } from '../components/PlaceList'
-import { useParams } from 'react-router-dom'
+//import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import { useContext } from 'react'
