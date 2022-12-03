@@ -1,9 +1,10 @@
+//DEPENDENCIES
 const express = require('express')
 const topicsrouter = express.Router()
 const topicsController = require('../controllers/topics-controller')
 
 
-
+//ALL ROUTES DEFINED
 topicsrouter.get('/:pid', topicsController.getTopicById)
 
 topicsrouter.get('/user/:uid', topicsController.getTopicsByUserId)

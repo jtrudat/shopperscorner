@@ -9,8 +9,10 @@ import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import axios from 'axios'
 
 
+//COMPONENT RENDERS A CONDITIONAL TERNARY OPERATOR TO SWITCH A BUTTON BETWEEN LOGIN AND SIGNUP. 
+//ALSO, USE CONTEXT PROPAGATES THAT THE USER IS LOGGED IN. AXIOS SWITCHES THE POSTING FROM LOGIN TO SIGNUP ROUTING WHEN APPLICABLE 
 export const Authorize =()=>{
-    //const [userTag, setUserTag] = useState('')
+    
     const auth = useContext(AuthorizeContext)
 
     const [ isLogin, setIsLogin ] = useState(true)
@@ -29,7 +31,6 @@ export const Authorize =()=>{
 
     const handleLoginSubmit = async (evt)=>{
         evt.preventDefault()
-        //console.log(formState.inputs)
         setIsLoading(true)
         if (isLogin){
             axios.post('/api/users/login', {
@@ -38,8 +39,6 @@ export const Authorize =()=>{
             })
             .then(response =>{
                 console.log(response.data.user._id)
-                //setUserTag = response.data.user._id
-                // console.log(userTag)
                 setIsLoading(false)
                 auth.login(response.data.user._id)
             })
@@ -53,18 +52,11 @@ export const Authorize =()=>{
             })
             .then(response =>{
             console.log(response.data.user._id)
-            //setUserTag = response.data.user._id
-            //console.log(userTag)
             setIsLoading(false)
             auth.login(response.data.user._id)
             })}
-        // setIsLoading(false)
-        // auth.login(response.data.user._id)
-    }
-
-    const idSync =()=>{
-       
-       // console.log(userTag)
+        
+        
     }
 
     const handleLoginMode = ()=>{
@@ -92,10 +84,12 @@ export const Authorize =()=>{
                     onInput={handleInput}>
 
                 </Input>
+
+                {/* TYPE PASSWORD WILL AUTOMATCALLY BLANK OUT PASSWORD VIEWING */}
                 <Input 
                     element="input"
                     id="password"
-                    type="password" //type password will automatically blank out the words. type date-time will auto form calendar
+                    type="password" 
                     label="Password"
                     onInput={handleInput}>
                 </Input>

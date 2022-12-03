@@ -4,22 +4,12 @@ import { useEffect } from 'react'
 import { UsersList } from '../components/UsersLists'
 import { useState } from 'react'
 
+//THIS COMPONENT RETRIEVES ALL OF THE USERS FROM THE DATABASE ANS PASSES IT DOWN IN PROPS TO SPECIFY HOW IT IS TO BE RENDERED
 export const Users = ()=>{
     const [ isLoading, setIsLoading ] = useState()
     const [ loadedUsers, setLoadedUsers] = useState()
     
-    // useEffect(()=>{
-    //     const sendRequest = async () =>{
-    //         setIsLoading(true)
-    //         const response = await fetch('http://localhost:4100/api/users')
-    //         const responseData = await response.json()
-    //         console.log(responseData.users)
-    //         setLoadedUsers(responseData.users)
-    //         setIsLoading(false)
-    //     }
-    //     sendRequest()
-    // }, [])
-
+   
     useEffect(()=>{
         setIsLoading(true)
         axios.get('/api/users')
@@ -58,3 +48,15 @@ export const Users = ()=>{
 //             topics: 1
 //             }
 // ];
+
+ // useEffect(()=>{
+    //     const sendRequest = async () =>{
+    //         setIsLoading(true)
+    //         const response = await fetch('http://localhost:4100/api/users')
+    //         const responseData = await response.json()
+    //         console.log(responseData.users)
+    //         setLoadedUsers(responseData.users)
+    //         setIsLoading(false)
+    //     }
+    //     sendRequest()
+    // }, [])

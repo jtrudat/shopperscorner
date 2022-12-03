@@ -15,13 +15,15 @@ This is a simple MERN stack application for adding, editing and reviewing variou
 # technical stack specifications: 
 
 # demo snapshot:
-![title](/folderlocation/filename.png)
+![MUSE AND PERSUE](./frontend/src/muse%20and%20peruse%20example%20homepg.png)
 
 # Installation:
 
 # How to use application:
 
 # API documentation:
+
+# Future functionality: 
 
 # Credits:
 https://getbootstrap.com/docs/4.1/examples/

@@ -1,23 +1,19 @@
-//import logo from './logo.svg';
-import './App.css';
+//import './App.css';
 import './scss/styles.css'
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import React, { useState } from 'react'
 import { useCallback } from 'react'
-//import { Welcome } from './components/Welcome'
-//import { Destination } from './components/Destination'
-// import { Mainlinks } from './components/Mainlinks'
-//import { Signup } from './components/views/customer/auth/Signup'
-//import { Login } from './components/views/customer/auth/Login'
 import { Users } from './user/pages/Users'
 import { NewPlace } from './places/pages/NewPlace'
 import { UserPlaces } from './places/pages/UserPlaces'
 import { MainNavigation } from './shared/components/navigation/MainNavigation'
-//import { UpdatePlace } from './places/pages/UpdatePlace'
 import { UpdatePlace2 } from './places/pages/UpdatePlace2'
 import { Authorize } from './user/pages/Authorize'
 import { AuthorizeContext } from './shared/context/AuthorizeContext'
 
+//HEART OF THE APPLICATION. ROUTER/SWITCH AND LINKS ARE USED TO ALLOW ALL ROUTES TO BE ACCESSBILE BUT DISPLAY ONLY ONE AT A TIME AS ACTIVE IN THIS SPA
+//THIS IS THE LEVEL WHERE USECONTEXT IS WRAPPED AROUND ALL THE CHILDREN COMPONENTS AND ALLOWS USER IDS AND STATES SUCH AS LOGGED IN TO 
+//PROPAGATE THROUGHOUT AND HELP DETERMINE WHAT IS / IS NOT ACCESSIBLE  
 function App() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [ userId, setUserId ] = useState(false)
@@ -74,7 +70,7 @@ function App() {
   return (
     
     <div>
-      {/* Context needed show or hide components based on the user entered credentials */}
+      {/* USECONTEXT MUST BE COMPLTELY WRAPPED AROUND ALL COMPONENTS TO ENSURE RIGHTS ARE PASSED CORRECTLY */}
       <AuthorizeContext.Provider 
         value={{ isLoggedIn: isLoggedIn, userId: userId, login: login, logout: logout }}>
        <Router>
@@ -92,25 +88,3 @@ export default App;
 
 
 
-{/* <Route path="/user/auth/Signup">
-<Signup/>
-</Route>
-<Route path="/user/auth/Login">
-<Login/>
-</Route>
-<Route path="/" exact>
-<Users/>
-</Route>
-<Route path="/:userId/topics" exact>
-<UserPlaces />
-</Route>
-<Route path="/topics/new" exact>
-<NewPlace/>
-</Route>
-<Route path="/topics/:topicId">
-<UpdatePlace/>
-</Route>
-<Route path="/authorize">
-<Authorize />
-</Route>
-<Redirect to="/"/> */}

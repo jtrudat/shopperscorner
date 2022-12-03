@@ -3,6 +3,7 @@ import  Avatar  from '../../shared/components/uielements/Avatar'
 import { Link } from 'react-router-dom'
 import { Card } from '../../shared/components/uielements/Card'
 
+//USED TO DISPLAY THE USER AND NUMBER OF TOPICS WITHIN THE OVERAL USER LIST VIEW
 export const UserItem = (props)=>{
     return(
         <li className="user-item">

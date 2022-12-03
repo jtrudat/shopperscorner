@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 const Schema = mongoose.Schema
 
+//MODEL USED TO ESTABLISH THE COLLECTION NAME IN THE DATABSE OF USERS AND SETS THE PROPERTIES OF EACH VALUE
+//WITHIN THE MODEL. ALSO, THE TOPICS TYPE SPECIFICATION OF MONGOOSE OBJECT ID IS NEEDED TO HELP SEARCH FOR AND
+//ESTABLISH THE 1 TO MANY RELATIONSHIP BETWEEN USER AND TOPICS
 const userSchema = new Schema({
     name: String,
     email: { type: String, unique: true},
@@ -12,7 +15,6 @@ const userSchema = new Schema({
 })
 
 userSchema.plugin(uniqueValidator)
-
 module.exports = mongoose.model('User', userSchema)
 
 // const mongoose = require('mongoose')
