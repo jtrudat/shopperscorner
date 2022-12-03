@@ -19,7 +19,7 @@ export const UpdatePlace2 = ()=>{
         .then((response)=>{
             setLoadedPlaces(response.data.place)
         })
-    }, [])
+    }, [topicId])
 
     //A RENDER INDICATING THAT THE TOPIC WAS INAPPROPRIATLEY DISASSOCIATED FROM THE USER AND THAT A MANUAL FIX IN THE DATABASE WILL NEED TO BE MADE  
     if(!loadedPlaces){
