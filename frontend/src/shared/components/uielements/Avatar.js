@@ -1,7 +1,6 @@
 import React from 'react';
 
-//import './Avatar.css';
-
+//CONTROLS ORIENTATION AND STRUCTURING OF THE USERS PERSONAL PICTURE
 const Avatar = props => {
   return (
     <div className={`avatar ${props.className}`} style={props.style}>

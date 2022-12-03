@@ -1,3 +1,5 @@
+//COMPONENT NOT USED. AXIOS METHOD PREFFERED WHEN CONNECTING TO BACKEND
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 export const useHttpSetup = () => {

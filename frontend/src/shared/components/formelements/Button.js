@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
+//REUSABLE BUTTON COMPONENT TO HELP IMPLEMENT DRY PRACTICES AND HELP ENSURE DESIRED UNIFORM STYLING
 export const Button = props => {
   if (props.href) {
     return (

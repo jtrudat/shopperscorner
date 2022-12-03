@@ -1,6 +1,11 @@
-import React, { useReducer, useEffect } from 'react'
-//import { validate } from '../../checker/validators'
+//REUSABLE INPUT COMPONENT
 
+import React, { useReducer, useEffect } from 'react'
+
+
+//THE FUNCTION PORTION OF THE REDUCER. HERE THE PREVIOUS STATE IS INITIALLY MAINTAINED AND ONLY THE PORTIONS
+//OF THE STATE DESIGNATED FOR CHANGE THROUGH THE SWITCH CASE ACTION TYPE ARE UPDATED. 
+//BEST TO USE WHEN WORKING WITH MULTIPLE STATES
 const inputReducer = (state, action) =>{
     switch (action.type){
         case 'CHANGE':
@@ -14,6 +19,7 @@ const inputReducer = (state, action) =>{
     }
 }
 
+//REUSABLE INPUT ELEMENT COMPONENT TO HELP IMPLEMENT DRY PRACTICES AND HELP ENSURE DESIRED UNIFORM ACTIONS
 export const Input = (props)=>{
 
     const [inState, dispatch] = useReducer(inputReducer, {value: props.value, isValid: true })
@@ -26,13 +32,11 @@ export const Input = (props)=>{
         onInput(id, value)
     }, [ id, value, onInput])
 
+    //THE DISPATCH INTIIATES THE ACTION TYPE AND PAYLOAD IS USED TO REFERENCE THE NEW VALUE TO BE INJECTED 
     const changeHandler = (evt)=>{
         dispatch({type: 'CHANGE', value: evt.target.value, validators: props.validators})
     }
 
-    // const handlerDataEnter =()=>{
-
-    // }
 
     const element = props.element === 'input' ? (
     <input 

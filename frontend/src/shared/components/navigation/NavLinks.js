@@ -4,6 +4,10 @@ import { useContext } from 'react'
 import { AuthorizeContext } from '../../context/AuthorizeContext'
 import { useHistory } from 'react-router-dom'
 
+//COMPONENT WHERE ALL OF THE SPECIFIED ROUTES ARE CONTROLLED. 
+//THE NAVLINKS LINK BACK TO APP.JS AND THE CORRESPONDING ROUTES ARE CONTNUOUSLY SWITCHED TO ONLY DISPLAY THE ROUTE LAST CLICK AND THEN REFLECTED WITHIN THE URL
+//THIS IDEA ALLOWS QUICK RENDERING OF MULTIPLE PAGES WITHIN A SPA ENVIRONMENT
+//USECONTEXT OF LOGGEDIN STATUS IS USED TO HELP DETERMINE WHICH NAVLINKS ARE DISPLAYED
 export const NavLinks = (props)=>{
     const authority = useContext(AuthorizeContext)
     const history = useHistory()

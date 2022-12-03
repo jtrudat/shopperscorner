@@ -1,3 +1,5 @@
+//COMPONENT NOT USED. AXIOS METHOD PREFFERED WHEN CONNECTING TO BACKEND
+
 import { useState } from 'react'
 import { useRef } from 'react'
 import { useEffect } from 'react'
