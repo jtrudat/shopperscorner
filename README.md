@@ -24,7 +24,7 @@ ______________________
 _________________________
 
 # Installation:
-view at https: --
+view at https://museperuse.herokuapp.com/
 or run npm install in both the shoppercorner root folder as well as the frontend root folder. local installtion will require a mongo DB connection with the collections of users and topics already created
 __________________________
 

@@ -52,14 +52,17 @@ export const UpdatePlace2 = ()=>{
 
     return(
         <div>
-            <label>Topic</label>
-            <input type="text"  size="60" defaultValue={loadedPlaces.topic} onChange={handleChangeTopic}></input>
+            <div className="place-form">
+            <label>Topic  : </label>
             <br></br>
-            <label>Description</label>
-            <textarea type="text"  rows="4" cols="60" defaultValue={loadedPlaces.description} onChange={handleChangeDescription}></textarea>
+            <input className = "place-form" type="text"  size="40" defaultValue={loadedPlaces.topic} onChange={handleChangeTopic}></input>
             <br></br>
-            <button onClick={handleSubmitTopic}>update</button>
-            
+            <br></br>
+            <label>Description : </label>
+            <textarea className="place-form" type="text"  rows="4" cols="40" defaultValue={loadedPlaces.description} onChange={handleChangeDescription}></textarea>
+            <br></br>
+            <button className="button" onClick={handleSubmitTopic}>update</button>
+            </div>
         </div>
     )
 }

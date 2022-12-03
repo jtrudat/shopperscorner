@@ -34,7 +34,7 @@ export const PlaceItem = (props)=>{
             </div>
             <div className="place-item__actions">
                 {authority.isLoggedIn && (<NavLink to={`/topics/${props.id}`}>EDIT</NavLink>)}
-                {authority.isLoggedIn && (<button id={props.id} onClick={handleDelete}>DELETE</button>)}
+                {authority.isLoggedIn && (<button className="button" id={props.id} onClick={handleDelete}>DELETE</button>)}
             </div>
             </Card>
         </li>
