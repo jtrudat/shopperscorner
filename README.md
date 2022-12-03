@@ -1,6 +1,5 @@
-# Project Title: 
-Muse & Peruse
-
+# Project Title: Muse & Peruse
+___________________
 # Project description:
 This is a simple MERN stack application for adding, editing and reviewing various topics of interest. Topics can range from news worthy events to hobbies and crafts, the choice is yours
 
