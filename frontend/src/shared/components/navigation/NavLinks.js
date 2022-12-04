@@ -24,7 +24,7 @@ export const NavLinks = (props)=>{
             </li>
             {authority.isLoggedIn && (
             <li>
-                <NavLink to="/user/topics">MY TOPICS</NavLink>
+                <NavLink to={`/${authority.userId}/topics`}>MY TOPICS</NavLink>
             </li>)}
             {authority.isLoggedIn && (
             <li>

@@ -22,7 +22,7 @@ export const NewPlace = ()=>{
         }
     })
 
-    const refresh = useHistory()
+    const history = useHistory()
 
     //AXIOS IS THE PREFERRED METHOD TO PROXY TO THE SERVER. THIS AXIOS REQUEST IS ROUTED TO THE TOPICS CONTROLLER WHICH USES THE TOPIC MODEL
     //TO FINALIZE THE COMPLETETION. THIS IS PROCESS ALSO INCLUDES THE 1 TO MANY USER TO TOPICS ASSOCIATION WHICH IS ACCOMPLISHED THROUGH MONGO DB SESSIONS
@@ -35,7 +35,7 @@ export const NewPlace = ()=>{
         })
         .then(()=>{
             console.log(authority.userId)
-            refresh.push('/')
+            history.push(`/${authority.userId}/topics`)
         })
 
     }

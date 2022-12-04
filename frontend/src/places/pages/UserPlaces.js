@@ -1,6 +1,6 @@
 import React from 'react'
 import { PlaceList } from '../components/PlaceList'
-//import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import { useContext } from 'react'
@@ -10,8 +10,9 @@ import { useState } from 'react'
 
 export const UserPlaces = ()=>{
     const authority = useContext(AuthorizeContext)
-    const userId = authority.userId
+    //const userId = authority.userId
     const [ userTopics, setUserTopics ] = useState('')
+    const userId = useParams().userId //(think this needs to be the user id of the creator)
 
     //USECONTEXT STATE STORED FROM INITIAL LOGIN IS CALLED UPON TO INJECT THE CURRENT USERID USED TO GET AND MAP OUT ALL ASSOCIATED TOPICS
     axios.get(`/api/places/user/${userId}`)

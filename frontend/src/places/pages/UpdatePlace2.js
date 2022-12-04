@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
  import { useHistory } from 'react-router-dom'
+ import { useContext } from 'react'
+ import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 
 export const UpdatePlace2 = ()=>{
     //USEPARAMS IS DESIGNED TO THE CURRENT TOPIC ID USED FOR REFERENCE BY AXIOS AND TOPIC ROUTER TO UPDATE THE CORRECT TOPIC
@@ -12,14 +14,21 @@ export const UpdatePlace2 = ()=>{
     const [ changeDescription, setChangeDescription] = useState('')
     const [ loadedPlaces, setLoadedPlaces] = useState('')
     const history = useHistory()
+    const authority = useContext(AuthorizeContext)
 
     //A HOOK DESIGNED TO ENSURE THE UPDATED STATE 
+    //MUST USE UESEFFECT, NORMAL GET REQUEST RENDERS NO TOPIC BEFORE DATA CAN LOAD
     useEffect(()=>{
         axios.get(`/api/places/${topicId}`)
         .then((response)=>{
             setLoadedPlaces(response.data.place)
         })
     }, [topicId])
+
+    // axios.get(`/api/places/${topicId}`)
+    // .then((response)=>{
+    //     setLoadedPlaces(response.data.places)
+    // })
 
     //A RENDER INDICATING THAT THE TOPIC WAS INAPPROPRIATLEY DISASSOCIATED FROM THE USER AND THAT A MANUAL FIX IN THE DATABASE WILL NEED TO BE MADE  
     if(!loadedPlaces){
@@ -45,7 +54,8 @@ export const UpdatePlace2 = ()=>{
         })
         //THIS PUSH IS AN EFFICIENT WAY TO SEND THE USER BACK TO THE TOPICS TO VIEW THE UDPATED CHANGES
         .then((response)=>{
-             history.push('/user/topics')
+            console.log(response.data)
+             history.push(`/${authority.userId}/topics`)
         })
         
     }

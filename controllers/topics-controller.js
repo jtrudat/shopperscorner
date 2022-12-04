@@ -40,7 +40,7 @@ const createTopic = async (req, res) =>{
     const createdTopic = new Topic({
         topic : topic,
         description : description,
-        image : 'https://placekitten.com/g/200/310',
+        image : 'https://i.pinimg.com/originals/32/1a/4d/321a4d071785577f60d6d7ecc483e1fc.jpg',
         creator : creator
     })
 

@@ -4,13 +4,16 @@ import { Card } from '../../shared/components/uielements/Card'
 import { useContext } from 'react'
 import { AuthorizeContext } from '../../shared/context/AuthorizeContext'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 export const PlaceItem = (props)=>{
     //CONTEXT IS USED TO GRAB THE USERS MONGO ID FROM INTIAL LOGIN RES.JSON. FROM THERE THE STATUS OF THE IS LOOGED IN 
     // AND USER ID STATE IS MADE AVAILBALE TO ALL CHILDREN COMPONENTS OF APP.JS AND CAN BE USED TO SHOW 
     const authority = useContext(AuthorizeContext)
+    const userIden = authority.userId
+    const topicCreator = useParams().userId
 
     // const refresh = useHistory() //A PAGE REFRESH OR USEEFFECT IS NOT NEEDED FOR THE COMPONENT TO RERENDER
 
@@ -33,8 +36,8 @@ export const PlaceItem = (props)=>{
                 <p>{props.description}</p>
             </div>
             <div className="place-item__actions">
-                {authority.isLoggedIn && (<NavLink to={`/topics/${props.id}`}>EDIT</NavLink>)}
-                {authority.isLoggedIn && (<button className="button" id={props.id} onClick={handleDelete}>DELETE</button>)}
+            {authority.isLoggedIn && topicCreator === userIden && (<NavLink to={`/topics/${props.id}`}>EDIT</NavLink>)}
+                {authority.isLoggedIn && topicCreator === userIden && (<button className="button" id={props.id} onClick={handleDelete}>DELETE</button>)}
             </div>
             </Card>
         </li>
