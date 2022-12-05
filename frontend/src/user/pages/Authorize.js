@@ -95,7 +95,7 @@ export const Authorize =()=>{
                 </Input>
                 <Button type="submit">{isLogin ? 'LOGIN' : "SIGN UP"}</Button>
             </form>
-            <Button onClick={handleLoginMode}> change to {isLogin ? 'sign up' : 'login'}</Button>
+            <Button onClick={handleLoginMode}> Change to {isLogin ? 'Sign Up' : 'Login'}</Button>
             </Card>
     )
 }
