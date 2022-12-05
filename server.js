@@ -15,11 +15,25 @@ require('dotenv').config()
 const PORT = process.env.PORT
 const MONGO_URI = process.env.MONGO_URI
 
-// FOR FRONTEND DEPLOYMENT ONLY Have Node serve the files for the built React app
+// --------------------------------
+// FOR FRONTEND DEPLOYMENT TO HEROKU ONLY -- "build": "cd frontend && npm install && npm run build"(package.json backend)
 //WHEN DEPLOYING TO HEROKU THE BACKEND PACKAGE JSON MUST BE EXPOSED AT THE ROOT  AND THIS BUILD DIRECTORY 
 //MUST BE EXPOSED TO THE ROOT OF THE FRONTEND WITH THE FRONTEND PACKAGE JSON EXPOSED 
-app.use(express.static(path.resolve(__dirname, './frontend/build')))
-    
+// app.use(express.static(path.resolve(__dirname, './frontend/build')))
+// --------------------------------
+
+// --------------------------------
+//FOR FRONTEND DEPLOYMENT TO CYCLIC.SH
+app.use(express.static(path.join(__dirname, "./frontend/build")))
+app.get("*", function (_, res){
+    res.sendFile(
+        path.join(__dirname, ".frontend/build/index.html"),
+        function (err){
+            res.status(500).send(err)
+        }
+    )
+})
+// ---------------------------------
 
 //MIDDLEWARE FOR ALL INCOMING TRAFFIC GOES THROUGH APP.USE PARAMETERS
 //NEEDED FOR ACCURATE DATA PARSING SO THE DATA CAN BE USED APPROPRIATELY BY THE CONTROLLER
