@@ -76,3 +76,26 @@ export const UpdatePlace2 = ()=>{
         </div>
     )
 }
+
+
+// const [ loadedTopic, setLoadedTopic] = useState('')
+// const [ loadedDescription, setLoadedDescription ] = useState('')
+
+
+// const handleChangeTopic =(evt)=>{
+//     setChangeTopic(()=>{
+//         if (!evt.target.value){
+//             return loadedTopic
+//         }
+//         else {return evt.target.value}
+//     })
+// }
+
+// const handleChangeDescription = (evt)=>{
+//     setChangeDescription(()=>{
+//         if (!evt.target.value){
+//             return loadedDescription
+//         }
+//         else return evt.target.value
+//     })
+// }
